@@ -91,5 +91,11 @@
     "*.vue": "$(capture).*.ts, $(capture).*.js, $(capture).story.vue",
     "*.w": "$(capture).*.w, I$(capture).w",
     "*.xaml": "$(capture).xaml.cs"
-  }
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always"
+  },
+  "eslint.rules.customizations": [
+    { "rule": "@unocss/order", "severity": "error" } // Optional: Highlight this rule
+  ]
 }
