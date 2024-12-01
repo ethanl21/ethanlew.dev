@@ -1,0 +1,74 @@
+---
+interface Props {
+	length: number;
+	currentURL: string;
+	currentPageIdx: number;
+	firstURL: string;
+	lastURL: string;
+	prevURL?: string;
+	nextURL?: string;
+}
+const {
+	length,
+	currentURL,
+	currentPageIdx,
+	firstURL,
+	lastURL,
+	prevURL,
+	nextURL,
+} = Astro.props;
+const pathname = new URL(Astro.request.url).pathname.split("/");
+const firstPath = pathname[1];
+---
+
+<div class="flex flex-row">
+	<a
+		class:list={[
+			{
+				"opacity-50 pointer-events-none cursor-default": currentPageIdx === 1,
+			},
+		]}
+		href={`/${firstPath}`}
+		aria-label="first page"
+	>
+		<i class="i-fa6-solid:angles-left"></i>
+	</a>
+	<a
+		class:list={[
+			{
+				"opacity-50 pointer-events-none cursor-default": currentPageIdx === 1,
+			},
+		]}
+		href={prevURL}
+		aria-label="previous page"
+	>
+		<i class="i-fa6-solid:angle-left"></i>
+	</a>
+	<span>
+		{currentPageIdx} / {length}
+	</span>
+	<a
+		class:list={[
+			{
+				"opacity-50 pointer-events-none cursor-default":
+					currentPageIdx === length,
+			},
+		]}
+		href={nextURL}
+		aria-label="next page"
+	>
+		<i class="i-fa6-solid:angle-right"></i>
+	</a>
+	<a
+		class:list={[
+			{
+				"opacity-50 pointer-events-none cursor-default":
+					currentPageIdx === length,
+			},
+		]}
+		href={`/${firstPath}/${length}`}
+		aria-label="last page"
+	>
+		<i class="i-fa6-solid:angles-right"></i>
+	</a>
+</div>
