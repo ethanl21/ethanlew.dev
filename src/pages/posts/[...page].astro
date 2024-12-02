@@ -38,8 +38,6 @@ const firstPath = pathname[1];
 		<ul class="flex grow flex-col gap-8 p-4">
 			{
 				page.data.map(async (post) => {
-					const renderedPost = await post.render();
-
 					return (
 						<li>
 							<article class="flex flex-col gap-2">
@@ -48,14 +46,6 @@ const firstPath = pathname[1];
 										<i class="i-fa6-solid:calendar-days" />
 										<span>
 											{format(new Date(post.data.date), "do LLLL, yyyy")}
-										</span>
-									</div>
-
-									<span>•</span>
-									<div class="flex flex-row items-center gap-1">
-										<i class="i-fa6-solid:clock" />
-										<span>
-											{renderedPost.remarkPluginFrontmatter.minutesRead}
 										</span>
 									</div>
 								</div>
