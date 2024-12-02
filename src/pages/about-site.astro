@@ -1,0 +1,70 @@
+---
+import Layout from "../layouts/MacLayout.astro";
+---
+
+<Layout title="ethanlew.dev - About">
+	<div class="flex flex-col gap-4">
+		<div>
+			<h1>About this website</h1>
+			<a class="btn text-xl" href="/">
+				<i class="i-fa6-solid:arrow-left"></i>
+				Back to Index Card
+			</a>
+		</div>
+
+		<div class="flex flex-col gap-4 p-4">
+			<p>
+				The design of this site is inspired by Classic Mac OS. It uses the
+				following open source libraries:
+			</p>
+
+			<ul class="list-disc-inside">
+				<li>
+					<a
+						class="underline"
+						href="https://github.com/opencoca/system7.css"
+						target="_blank"
+						rel="noopener noreferrer">system7.css</a
+					>
+				</li>
+				<li>
+					<a
+						class="underline"
+						href="https://iconify.design"
+						target="_blank"
+						rel="noopener noreferrer">iconify.design</a
+					>
+				</li>
+				<li>
+					<a
+						href="https://unocss.dev"
+						target="_blank"
+						rel="noopener noreferrer"
+						class="underline">UnoCSS</a
+					>
+				</li>
+			</ul>
+
+			<p>
+				Additionally, some assets are taken from
+				<a
+					class="underline"
+					href="https://www.figma.com/community/file/907684770824957775/macos-classic"
+					target="_blank"
+					rel="noopener noreferrer">MacOS Classic</a
+				>
+				by Brett Anderson via Figma.
+			</p>
+
+			<p>
+				<em>ethanlew.dev</em> is built using <i
+					class="i-logos:astro-icon mr-1 align-middle leading-none"></i>{
+					Astro.generator
+				} and is hosted by <i
+					class="i-logos:github-icon mr-1 align-middle leading-none"></i>GitHub
+				Pages. It currently contains this "about-me" page and an
+				under-construction blog page.
+			</p>
+		</div>
+	</div>
+</Layout>
