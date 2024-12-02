@@ -11,7 +11,7 @@ import bgTile from "./_assets/bg_tile.svg";
 <Layout title="Hello world!">
 	<script src="https://unpkg.com/hyperscript.org@0.9.13"></script>
 	<link rel="stylesheet" href="https://unpkg.com/system7/style.css" />
-	<script>
+	<script is:inline>
 		if (!window.location.hash) {
 			const cardIndexElement = document.querySelector("[data-card-index]");
 			if (cardIndexElement) {
