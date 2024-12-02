@@ -1,6 +1,5 @@
 import {
 	presetUno,
-	presetAttributify,
 	presetTypography,
 	presetIcons,
 	presetWebFonts,
@@ -12,7 +11,7 @@ export default defineConfig({
 		presetUno({
 			dark: "class",
 		}),
-		presetAttributify(),
+
 		presetTypography(),
 		presetIcons({
 			extraProperties: {
