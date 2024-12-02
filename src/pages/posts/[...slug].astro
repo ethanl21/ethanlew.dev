@@ -38,7 +38,7 @@ const shareData = {
 				<TableOfContents headings={headings} />
 			</aside>
 
-			<main class="mx-auto w-fit">
+			<main class="w-full">
 				<header>
 					<h1 class="text-4xl font-semibold leading-10">{entry.data.title}</h1>
 					<div
@@ -84,13 +84,23 @@ const shareData = {
 						<span class="font-italic">Share this post via:</span>
 						<ul class="flex flex-row gap-2">
 							<li>
-								<a href={bskyShareURL} rel="noopener" target="_blank">
-									<i class="i-fa6-brands:bluesky"></i>
+								<a
+									href={bskyShareURL}
+									rel="noopener"
+									target="_blank"
+									class="text-2xl"
+								>
+									<i class="i-logos:bluesky"></i>
 								</a>
 							</li>
 							<li>
-								<a href={telegramShareURL} rel="noopener" target="_blank">
-									<i class="i-fa6-brands:telegram"></i>
+								<a
+									href={telegramShareURL}
+									rel="noopener"
+									target="_blank"
+									class="text-2xl"
+								>
+									<i class="i-logos:telegram"></i>
 								</a>
 							</li>
 							<li>
@@ -99,6 +109,7 @@ const shareData = {
 									data-web-share
 									title="Web Share API"
 									data-share={JSON.stringify(shareData)}
+									class="text-2xl"
 								>
 									<i class="i-fa6-solid:share-from-square"></i>
 								</button>
