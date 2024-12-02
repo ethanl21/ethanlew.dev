@@ -24,6 +24,7 @@ export default defineConfig({
 			provider: "bunny",
 			fonts: {
 				montserrat: "Montserrat",
+				lobster: "Lobster",
 			},
 		}),
 	],

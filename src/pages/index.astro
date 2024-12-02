@@ -1,9 +1,300 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import Layout from "../layouts/MinimalLayout.astro";
+
+import appleLogo from "./_assets/apple.svg";
+import systemFloppy from "./_assets/System Floppy.svg";
+import trash from "./_assets/Trash.svg";
+import bgTile from "./_assets/bg_tile.svg";
 ---
 
 <Layout title="Hello world!">
-	<main>
-		<h1>hello world</h1>
-	</main>
+	<script src="https://unpkg.com/hyperscript.org@0.9.13"></script>
+	<link rel="stylesheet" href="https://unpkg.com/system7/style.css" />
+	<script>
+		if (!window.location.hash) {
+			const cardIndexElement = document.querySelector("[data-card-index]");
+			if (cardIndexElement) {
+				window.location.hash = "#" + cardIndexElement.id;
+			}
+		}
+	</script>
+
+	<div
+		class="fixed left-0 top-0 h-6 w-full flex flex-row gap-4 border-b-2 border-black bg-white px-1 py-4"
+	>
+		<nav>
+			<ul
+				class="m-0 h-full flex flex-row list-none items-center gap-8 px-4 py-0"
+				style="font-family: Chicago_12, sans-serif;"
+			>
+				<li>
+					<div>
+						<Image src={appleLogo} alt="Apple logo" />
+					</div>
+				</li>
+				<li class="text-xl">
+					<i class="i-fa6-brands:github align-text-bottom"></i>
+					<a
+						href="http://github.com/ethanl21"
+						target="_blank"
+						rel="noopener noreferrer">GitHub</a
+					>
+				</li>
+				<li class="text-xl">
+					<i class="i-fa6-brands:linkedin align-text-bottom"></i>
+					<a
+						href="https://www.linkedin.com/in/ethan-lew-97825b167/"
+						target="_blank"
+						rel="noopener noreferrer">Linkedin</a
+					>
+				</li>
+			</ul>
+		</nav>
+	</div>
+
+	<div
+		class="h-full flex items-center justify-center bg-auto"
+		style=`background-image: url(${bgTile.src});`
+	>
+		<div
+			class="absolute right-0 top-10 h-[90%] flex flex-col items-center justify-between"
+		>
+			<Image src={systemFloppy} alt="System Software" />
+			<Image src={trash} alt="Trash" />
+		</div>
+
+		<main class="window z-1 overflow-hidden rounded-md">
+			<div class="title-bar">
+				<button aria-label="Close" class="p-0 !h-9 !min-w-9 !w-9"></button>
+				<h1 class="title">ethanlew.dev</h1>
+				<button aria-label="Resize" class="resize p-0 !h-9 !min-w-9 !w-9"
+				></button>
+			</div>
+			<div class="separator"></div>
+
+			<div class="window-pane h-lg min-h-lg min-w-3xl w-3xl">
+				<div
+					class="hidden h-lg max-h-lg target:block"
+					id="cardIndex"
+					data-card-index
+				>
+					<div class="h-full flex flex-col">
+						<div class="h-full flex flex-grow flex-col gap-3 px-4 py-0">
+							<h1 class="text-5xl">
+								<span class="font-lobster">Hello</span>, I'm Ethan Lew!
+							</h1>
+							<div class="my-auto flex flex-col gap-3">
+								<p>
+									I'm a software developer with a B.S. Computer Science degree
+									from Cal State Fullerton. I have experience with the following
+									technologies:
+								</p>
+
+								<ul class="list-disc-inside">
+									<li>
+										<i class="i-logos:html-5 mr-1 align-text-bottom"></i>HTML, <i
+											class="i-logos:css-3 mr-1 align-text-bottom"></i>CSS,
+										<i class="i-logos:javascript mr-1 align-text-bottom"
+										></i>JavaScript, <i
+											class="i-logos:typescript-icon mr-1 align-text-bottom"
+										></i>TypeScript
+									</li>
+									<li>
+										<i class="i-logos:react mr-1 align-text-bottom"></i>React,
+										<i class="i-logos:svelte-icon mr-1 align-text-bottom"
+										></i>Svelte,
+										<i class="i-logos:astro-icon mr-1 align-text-bottom"
+										></i>Astro
+									</li>
+									<li>
+										<i class="i-logos:nextjs-icon mr-1 align-text-bottom"
+										></i>Next.js, <i
+											class="i-logos:svelte-icon mr-1 align-text-bottom"
+										></i>SvelteKit
+									</li>
+									<li>
+										<i class="i-logos:c-sharp mr-1 align-text-bottom"></i>C#/<i
+											class="i-logos:dotnet mr-1 align-text-bottom"></i>.NET,
+										<i class="i-logos:dotnet mr-1 align-text-bottom"></i>Blazor,
+										<i class="i-logos:xamarin mr-1 align-text-bottom"></i>.NET
+										MAUI
+									</li>
+								</ul>
+
+								<p>For more information, click the buttons below.</p>
+
+								<p>
+									<strong>I'm currently seeking full-time employment!</strong> Please
+									view the "Resumé" card by clicking the button below.
+								</p>
+							</div>
+						</div>
+
+						<div
+							class="flex flex-row justify-center gap-4 rounded-md bg-neutral-400 px-2 py-4"
+						>
+							<!-- <button
+								class="btn overflow-hidden rounded-md text-2xl !p-1"
+								data-script="on click go to url #cardIndex"
+							>
+								About
+							</button> -->
+							<button
+								class="btn overflow-hidden rounded-md text-2xl !p-1"
+								data-script="on click go to url #cardResume"
+							>
+								<i class="i-fa6-solid:address-card mr-1 align-text-bottom"
+								></i>Resumé
+							</button>
+							<button
+								class="btn overflow-hidden rounded-md text-2xl !p-1"
+								data-script="on click go to url #cardContact"
+							>
+								<i class="i-fa6-solid:envelope mr-1 align-text-bottom"
+								></i>Contact
+							</button>
+							<button
+								class="btn overflow-hidden rounded-md text-2xl !p-1"
+								data-script="on click go to url #cardProjects"
+							>
+								<i class="i-fa6-solid:brain mr-1 align-text-bottom"></i>Projects
+							</button>
+							<button
+								class="btn overflow-hidden rounded-md text-2xl !p-1"
+								data-script="on click go to url #cardAboutSite"
+							>
+								<i class="i-fa6-solid:circle-question mr-1 align-text-bottom"
+								></i>About this site
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="hidden h-lg max-h-lg target:block" id="cardResume">
+					<div class="px-4 py-8">
+						<h1>Resumé</h1>
+						<button
+							class="btn text-xl"
+							data-script="on click go to url #cardIndex"
+						>
+							<i class="i-fa6-solid:arrow-left"></i>
+							Back to Index Card
+						</button>
+
+						<p>Todo</p>
+					</div>
+				</div>
+
+				<div class="hidden h-lg max-h-lg target:block" id="cardContact">
+					<div class="px-4 py-8">
+						<h1>Contact Information</h1>
+						<button
+							class="btn text-xl"
+							data-script="on click go to url #cardIndex"
+						>
+							<i class="i-fa6-solid:arrow-left"></i>
+							Back to Index Card
+						</button>
+					</div>
+					<div class="px-4 py-8">
+						<p class="text-center text-2xl">
+							For all inquiries, please send an email to:<br />
+
+							<strong>hi</strong> (at) <strong>ethanlew</strong> (dot)
+							<strong>dev</strong>
+							<br />
+							<i class="i-fa6-solid:envelope-open-text"></i>
+							<i class="i-fa6-solid:heart"></i>
+						</p>
+					</div>
+				</div>
+
+				<div class="hidden h-lg max-h-lg target:block" id="cardProjects">
+					<div class="px-4 py-8">
+						<h1>Resumé</h1>
+						<button
+							class="btn text-xl"
+							data-script="on click go to url #cardIndex"
+						>
+							<i class="i-fa6-solid:arrow-left"></i>
+							Back to Index Card
+						</button>
+
+						<div class="flex flex-col gap-4 p-4">
+							<p>Here are some of the projects I've worked on:</p>
+
+							<ul class="list-disc-inside">
+								<li>todo</li>
+							</ul>
+
+							<p>
+								For more information, please visit my
+								<a
+									href="http://github.com/ethanl21"
+									target="_blank"
+									rel="noopener noreferrer">GitHub</a
+								>
+								page.
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="hidden h-lg max-h-lg target:block" id="cardAboutSite">
+					<div class="px-4 py-8">
+						<h1>Resumé</h1>
+						<button
+							class="btn text-xl"
+							data-script="on click go to url #cardIndex"
+						>
+							<i class="i-fa6-solid:arrow-left"></i>
+							Back to Index Card
+						</button>
+
+						<div class="flex flex-col gap-4 p-4">
+							<p>
+								The design of this site is inspired by Classic Mac OS and
+								Hypercard. It uses the following open source libraries:
+							</p>
+
+							<ul class="list-disc-inside">
+								<li>
+									<a
+										href="https://github.com/opencoca/system7.css"
+										target="_blank"
+										rel="noopener noreferrer">system7.css</a
+									>
+								</li>
+								<li>
+									<a
+										href="https://hyperscript.org"
+										target="_blank"
+										rel="noopener noreferrer">_hyperscript</a
+									>
+								</li>
+								<li>
+									<a
+										href="https://iconify.design"
+										target="_blank"
+										rel="noopener noreferrer">iconify.design</a
+									>
+								</li>
+							</ul>
+
+							<p>
+								Additionally, some assets are taken from
+								<a
+									href="https://www.figma.com/community/file/907684770824957775/macos-classic"
+									target="_blank"
+									rel="noopener noreferrer">MacOS Classic</a
+								>
+								by Brett Anderson via Figma.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
 </Layout>
