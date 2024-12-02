@@ -135,5 +135,11 @@ const shareData = {
 		</div>
 	</div>
 
-	<script src="./slug.ts"></script>
+	<!-- make sure the font-bold class is included for the table of contents -->
+	<p class="hidden font-bold" aria-hidden></p>
+	<script>
+		import { setup } from "./_slug.mts";
+
+		setup();
+	</script>
 </Layout>
