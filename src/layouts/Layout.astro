@@ -25,11 +25,11 @@ const { title } = Astro.props;
 			src="//gc.zgo.at/count.js"></script>
 	</head>
 	<body class="min-h-screen flex flex-col bg-amber-50 dark:bg-slate-900">
-		<header class="flex-shrink">
+		<header class="shrink">
 			<div class="flex flex-row items-center p-3 space-x-4">
 				<div class="text-4xl font-semibold font-mono">&gt; ethanlew.dev</div>
 
-				<nav class="flex flex-grow flex-row justify-end">
+				<nav class="flex grow flex-row justify-end">
 					<ul class="flex space-x-2">
 						<a href="/posts">Posts</a>
 						<li>Tags</li>
@@ -41,14 +41,14 @@ const { title } = Astro.props;
 			<slot name="header" />
 		</header>
 
-		<div class="flex-grow">
+		<div class="flex grow flex-col">
 			<slot />
 		</div>
 
 		<span class="mx-auto container">
 			<hr />
 		</span>
-		<footer class="mx-auto flex-shrink py-4 container">
+		<footer class="mx-auto shrink py-4 container">
 			<div class="flex flex-col items-center justify-center">
 				<nav>
 					<ul class="flex space-x-4">

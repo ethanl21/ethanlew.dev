@@ -4,6 +4,7 @@ import PaginationControl from "../../components/PaginationControl.astro";
 
 import { getCollection } from "astro:content";
 import type { PaginateFunction } from "astro";
+import { format } from "date-fns";
 
 export async function getStaticPaths({
 	paginate,
@@ -21,7 +22,7 @@ export async function getStaticPaths({
 		},
 	);
 
-	return paginate(formattedEntries, { pageSize: 5 });
+	return paginate(formattedEntries, { pageSize: 4 });
 }
 
 const { page } = Astro.props;
@@ -30,27 +31,63 @@ const firstPath = pathname[1];
 ---
 
 <Layout title="Posts">
-	<h1>All Posts</h1>
+	<div class="mx-auto h-full flex grow flex-col container">
+		<h1 class="text-5xl font-bold">All Posts</h1>
+		<hr class="my-2" />
 
-	<ul>
-		{
-			page.data.map((post) => {
-				return (
-					<li>
-						<a href={`/posts/${post.slug}`}>{post.data.title}</a>
-					</li>
-				);
-			})
-		}
-	</ul>
+		<ul class="flex grow flex-col gap-8 p-4">
+			{
+				page.data.map(async (post) => {
+					const renderedPost = await post.render();
 
-	<PaginationControl
-		length={page.lastPage}
-		currentURL={page.url.current}
-		currentPageIdx={page.currentPage}
-		firstURL={`/${firstPath}`}
-		lastURL={`/${firstPath}/${page.lastPage}`}
-		prevURL={page.url.prev}
-		nextURL={page.url.next}
-	/>
+					return (
+						<li>
+							<article class="flex flex-col gap-2">
+								<div class="flex flex-row items-center gap-2">
+									<div class="flex flex-row items-center gap-1">
+										<i class="i-fa6-solid:calendar-days" />
+										<span>
+											{format(new Date(post.data.date), "do LLLL, yyyy")}
+										</span>
+									</div>
+
+									<span>•</span>
+									<div class="flex flex-row items-center gap-1">
+										<i class="i-fa6-solid:clock" />
+										<span>
+											{renderedPost.remarkPluginFrontmatter.minutesRead}
+										</span>
+									</div>
+								</div>
+								<h2 class="text-3xl font-semibold">
+									<a href={`/posts/${post.slug}`}>{post.data.title}</a>
+								</h2>
+								<p class="truncate">{post.data.description}</p>
+
+								<div class="flex flex-row items-center gap-2">
+									{post.data.tags.map((tag) => (
+										<span class="overflow-hidden rounded-md bg-slate-100 px-1 py-0">
+											<em>#{tag}</em>
+										</span>
+									))}
+								</div>
+							</article>
+						</li>
+					);
+				})
+			}
+		</ul>
+
+		<div class="flex flex-row justify-center p-4">
+			<PaginationControl
+				length={page.lastPage}
+				currentURL={page.url.current}
+				currentPageIdx={page.currentPage}
+				firstURL={`/${firstPath}`}
+				lastURL={`/${firstPath}/${page.lastPage}`}
+				prevURL={page.url.prev}
+				nextURL={page.url.next}
+			/>
+		</div>
+	</div>
 </Layout>

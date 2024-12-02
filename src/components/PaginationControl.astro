@@ -21,13 +21,14 @@ const pathname = new URL(Astro.request.url).pathname.split("/");
 const firstPath = pathname[1];
 ---
 
-<div class="flex flex-row">
+<div class="w-fit flex flex-row items-center text-2xl">
 	<a
 		class:list={[
 			{
 				"opacity-50 pointer-events-none cursor-default": currentPageIdx === 1,
 			},
 		]}
+		class="leading-none transition-transform hover:scale-110"
 		href={`/${firstPath}`}
 		aria-label="first page"
 	>
@@ -39,14 +40,15 @@ const firstPath = pathname[1];
 				"opacity-50 pointer-events-none cursor-default": currentPageIdx === 1,
 			},
 		]}
+		class="leading-none transition-transform hover:scale-110"
 		href={prevURL}
 		aria-label="previous page"
 	>
 		<i class="i-fa6-solid:angle-left"></i>
 	</a>
-	<span>
+	<div class="">
 		{currentPageIdx} / {length}
-	</span>
+	</div>
 	<a
 		class:list={[
 			{
@@ -54,6 +56,7 @@ const firstPath = pathname[1];
 					currentPageIdx === length,
 			},
 		]}
+		class="leading-none transition-transform hover:scale-110"
 		href={nextURL}
 		aria-label="next page"
 	>
@@ -66,6 +69,7 @@ const firstPath = pathname[1];
 					currentPageIdx === length,
 			},
 		]}
+		class="leading-none transition-transform hover:scale-110"
 		href={`/${firstPath}/${length}`}
 		aria-label="last page"
 	>
