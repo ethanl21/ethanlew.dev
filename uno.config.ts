@@ -24,6 +24,7 @@ export default defineConfig({
 			fonts: {
 				montserrat: "Montserrat",
 				lobster: "Lobster",
+				inconsolata: "Inconsolata",
 			},
 		}),
 	],
