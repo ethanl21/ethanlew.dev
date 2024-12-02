@@ -19,6 +19,9 @@ importers:
       "@iconify-json/logos":
         specifier: ^1.2.3
         version: 1.2.3
+      "@iconify-json/vscode-icons":
+        specifier: ^1.2.3
+        version: 1.2.3
       astro:
         specifier: ^4.16.12
         version: 4.16.12(@types/node@18.19.64)(rollup@4.26.0)(terser@5.36.0)(typescript@5.6.3)
@@ -1038,6 +1041,12 @@ packages:
     resolution:
       {
         integrity: sha512-JLHS5hgZP1b55EONAWNeqBUuriRfRNKWXK4cqYx0PpVaJfIIMiiMxFfvoQiX/bkE9XgkLhcKmDUqL3LXPdXPwQ==,
+      }
+
+  "@iconify-json/vscode-icons@1.2.3":
+    resolution:
+      {
+        integrity: sha512-0mhgdamMkdO2up0DbiJSjTXkfnyPJTYYzvh4POSVvcYNl1A48PIUWkhYmxKGSCk/xn3czAOJaGjjMeXrM/HjEQ==,
       }
 
   "@iconify/types@2.0.0":
@@ -6995,6 +7004,10 @@ snapshots:
       "@iconify/types": 2.0.0
 
   "@iconify-json/logos@1.2.3":
+    dependencies:
+      "@iconify/types": 2.0.0
+
+  "@iconify-json/vscode-icons@1.2.3":
     dependencies:
       "@iconify/types": 2.0.0
 
