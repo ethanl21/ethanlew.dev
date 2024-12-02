@@ -14,7 +14,11 @@ export default defineConfig({
 		unocss({
 			injectReset: true,
 		}),
-		expressiveCode(),
+		expressiveCode({
+			defaultProps: {
+				wrap: true,
+			},
+		}),
 		mdx(),
 		sitemap(),
 		readingTime(),
