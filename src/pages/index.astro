@@ -9,16 +9,7 @@ import bgTile from "./_assets/bg_tile.svg";
 ---
 
 <Layout title="Hello world!">
-	<script src="https://unpkg.com/hyperscript.org@0.9.13"></script>
 	<link rel="stylesheet" href="https://unpkg.com/system7/style.css" />
-	<script is:inline>
-		if (!window.location.hash) {
-			const cardIndexElement = document.querySelector("[data-card-index]");
-			if (cardIndexElement) {
-				window.location.hash = "#" + cardIndexElement.id;
-			}
-		}
-	</script>
 
 	<div
 		class="fixed left-0 top-0 h-6 w-full flex flex-row gap-4 border-b-2 border-black bg-white px-1 py-4"
@@ -30,7 +21,7 @@ import bgTile from "./_assets/bg_tile.svg";
 			>
 				<li>
 					<div>
-						<Image src={appleLogo} alt="Apple logo" />
+						<Image src={appleLogo} alt="Apple logo" loading="eager" />
 					</div>
 				</li>
 				<li class="text-xl">
@@ -60,8 +51,8 @@ import bgTile from "./_assets/bg_tile.svg";
 		<div
 			class="absolute right-0 top-10 h-[90%] flex flex-col items-center justify-between"
 		>
-			<Image src={systemFloppy} alt="System Software" />
-			<Image src={trash} alt="Trash" />
+			<Image src={systemFloppy} alt="System Software" loading="eager" />
+			<Image src={trash} alt="Trash" loading="eager" />
 		</div>
 
 		<main class="window z-1 overflow-hidden rounded-md">
@@ -134,35 +125,29 @@ import bgTile from "./_assets/bg_tile.svg";
 						<div
 							class="flex flex-row justify-center gap-4 rounded-md bg-neutral-400 px-2 py-4"
 						>
-							<!-- <button
-								class="btn overflow-hidden rounded-md text-2xl !p-1"
-								data-script="on click go to url #cardIndex"
-							>
-								About
-							</button> -->
 							<button
 								class="btn overflow-hidden rounded-md text-2xl !p-1"
-								data-script="on click go to url #cardResume"
+								onclick="window.location.hash = '#cardResule'"
 							>
 								<i class="i-fa6-solid:address-card mr-1 align-text-bottom"
 								></i>Resumé
 							</button>
 							<button
 								class="btn overflow-hidden rounded-md text-2xl !p-1"
-								data-script="on click go to url #cardContact"
+								onclick="window.location.hash = '#cardContact'"
 							>
 								<i class="i-fa6-solid:envelope mr-1 align-text-bottom"
 								></i>Contact
 							</button>
 							<button
 								class="btn overflow-hidden rounded-md text-2xl !p-1"
-								data-script="on click go to url #cardProjects"
+								onclick="window.location.hash = '#cardProjects'"
 							>
 								<i class="i-fa6-solid:brain mr-1 align-text-bottom"></i>Projects
 							</button>
 							<button
 								class="btn overflow-hidden rounded-md text-2xl !p-1"
-								data-script="on click go to url #cardAboutSite"
+								onclick="window.location.hash = '#cardAboutSite'"
 							>
 								<i class="i-fa6-solid:circle-question mr-1 align-text-bottom"
 								></i>About this site
@@ -174,10 +159,7 @@ import bgTile from "./_assets/bg_tile.svg";
 				<div class="hidden h-lg max-h-lg target:block" id="cardResume">
 					<div class="px-4 py-8">
 						<h1>Resumé</h1>
-						<button
-							class="btn text-xl"
-							data-script="on click go to url #cardIndex"
-						>
+						<button class="btn text-xl" onclick="window.location.hash = ''">
 							<i class="i-fa6-solid:arrow-left"></i>
 							Back to Index Card
 						</button>
@@ -189,10 +171,7 @@ import bgTile from "./_assets/bg_tile.svg";
 				<div class="hidden h-lg max-h-lg target:block" id="cardContact">
 					<div class="px-4 py-8">
 						<h1>Contact Information</h1>
-						<button
-							class="btn text-xl"
-							data-script="on click go to url #cardIndex"
-						>
+						<button class="btn text-xl" onclick="window.location.hash = ''">
 							<i class="i-fa6-solid:arrow-left"></i>
 							Back to Index Card
 						</button>
@@ -213,10 +192,7 @@ import bgTile from "./_assets/bg_tile.svg";
 				<div class="hidden h-lg max-h-lg target:block" id="cardProjects">
 					<div class="px-4 py-8">
 						<h1>Resumé</h1>
-						<button
-							class="btn text-xl"
-							data-script="on click go to url #cardIndex"
-						>
+						<button class="btn text-xl" onclick="window.location.hash = ''">
 							<i class="i-fa6-solid:arrow-left"></i>
 							Back to Index Card
 						</button>
@@ -244,10 +220,7 @@ import bgTile from "./_assets/bg_tile.svg";
 				<div class="hidden h-lg max-h-lg target:block" id="cardAboutSite">
 					<div class="px-4 py-8">
 						<h1>Resumé</h1>
-						<button
-							class="btn text-xl"
-							data-script="on click go to url #cardIndex"
-						>
+						<button class="btn text-xl" onclick="window.location.hash = ''">
 							<i class="i-fa6-solid:arrow-left"></i>
 							Back to Index Card
 						</button>
@@ -264,13 +237,6 @@ import bgTile from "./_assets/bg_tile.svg";
 										href="https://github.com/opencoca/system7.css"
 										target="_blank"
 										rel="noopener noreferrer">system7.css</a
-									>
-								</li>
-								<li>
-									<a
-										href="https://hyperscript.org"
-										target="_blank"
-										rel="noopener noreferrer">_hyperscript</a
 									>
 								</li>
 								<li>
@@ -296,5 +262,30 @@ import bgTile from "./_assets/bg_tile.svg";
 				</div>
 			</div>
 		</main>
+
+		<script is:inline>
+			const updateIndexCardVisibility = () => {
+				const indexCard = document.querySelector("[data-card-index]");
+				if (!indexCard) return;
+
+				if (window.location.hash) {
+					// Hide the index card if a hash is specified
+					indexCard.classList.add("hidden");
+				} else {
+					// Show the index card if the hash is not specified or empty ('#')
+					indexCard.classList.remove("hidden");
+
+					// Remove empty hash from current URL without reloading
+					history.replaceState(
+						null,
+						document.title,
+						window.location.pathname + window.location.search,
+					);
+				}
+			};
+
+			window.addEventListener("hashchange", updateIndexCardVisibility);
+			updateIndexCardVisibility();
+		</script>
 	</div>
 </Layout>
