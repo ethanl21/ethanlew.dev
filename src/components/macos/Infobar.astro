@@ -1,0 +1,23 @@
+---
+interface Props {
+	messages: string[];
+}
+
+const { messages = [] } = Astro.props;
+---
+
+<div
+	class="w-full flex flex-col border-0 border-l border-r border-black bg-white"
+>
+	<div class="flex flex-row flex-wrap items-center justify-between px-4">
+		{
+			messages.map((message, index) => (
+				<div class="text-md text-black leading-loose font-[Geneva]">
+					{message}
+				</div>
+			))
+		}
+	</div>
+
+	<div class="mb-0.5 h-px w-full border-b border-black"></div>
+</div>

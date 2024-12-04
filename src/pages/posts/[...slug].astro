@@ -89,6 +89,7 @@ const shareData = {
 									rel="noopener"
 									target="_blank"
 									class="text-2xl"
+									aria-label="Share on BlueSky"
 								>
 									<i class="i-logos:bluesky"></i>
 								</a>
@@ -99,6 +100,7 @@ const shareData = {
 									rel="noopener"
 									target="_blank"
 									class="text-2xl"
+									aria-label="Share on Telegram"
 								>
 									<i class="i-logos:telegram"></i>
 								</a>
@@ -126,7 +128,7 @@ const shareData = {
 				</div>
 			</main>
 
-			<span aria-hidden></span>
+			<span aria-hidden="true"></span>
 		</div>
 
 		<hr class="border-dashed" />
@@ -147,7 +149,7 @@ const shareData = {
 	</div>
 
 	<!-- make sure the font-bold class is included for the table of contents -->
-	<p class="hidden font-bold" aria-hidden></p>
+	<p class="hidden font-bold" aria-hidden="true"></p>
 	<script>
 		import { setup } from "./_slug.mts";
 
