@@ -4,6 +4,7 @@ import MenuBar from "../components/macos/MenuBar.astro";
 import systemFloppy from "./_assets/System Floppy.svg";
 import trash from "./_assets/Trash.svg";
 import Window from "../components/macos/Window.astro";
+import { ClientRouter } from "astro:transitions";
 
 const { title } = Astro.props;
 
@@ -48,6 +49,8 @@ const links = [
 			src="//gc.zgo.at/count.js"></script>
 
 		<slot name="head" />
+
+		<ClientRouter />
 	</head>
 	<body>
 		<div class="relative h-screen max-h-screen flex flex-col">

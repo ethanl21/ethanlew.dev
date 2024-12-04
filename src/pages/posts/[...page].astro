@@ -15,10 +15,12 @@ export async function getStaticPaths({
 
 	const formattedEntries = blogEntries.sort(
 		(
-			a: { data: { date: string | number | Date } },
-			b: { data: { date: string | number | Date } },
+			a: { data: { created: string | number | Date } },
+			b: { data: { created: string | number | Date } },
 		) => {
-			return new Date(b.data.date).getTime() - new Date(a.data.date).getTime();
+			return (
+				new Date(b.data.created).getTime() - new Date(a.data.created).getTime()
+			);
 		},
 	);
 
@@ -45,21 +47,22 @@ const firstPath = pathname[1];
 									<div class="flex flex-row items-center gap-1">
 										<i class="i-fa6-solid:calendar-days" />
 										<span>
-											{format(new Date(post.data.date), "do LLLL, yyyy")}
+											{format(new Date(post.data.created), "do LLLL, yyyy")}
 										</span>
 									</div>
 								</div>
 								<h2 class="text-3xl font-semibold">
-									<a href={`/posts/${post.slug}`}>{post.data.title}</a>
+									<a href={`/posts/${post.id}`}>{post.data.title}</a>
 								</h2>
 								<p class="truncate">{post.data.description}</p>
 
 								<div class="flex flex-row items-center gap-2">
-									{post.data.tags.map((tag) => (
-										<span class="overflow-hidden rounded-md bg-slate-100 px-1 py-0">
-											<em>#{tag}</em>
-										</span>
-									))}
+									{post.data.tags &&
+										post.data.tags.map((tag) => (
+											<span class="overflow-hidden rounded-md bg-slate-100 px-1 py-0">
+												<em>#{tag}</em>
+											</span>
+										))}
 								</div>
 							</article>
 						</li>
