@@ -1,24 +1,25 @@
 ---
-import Layout from "../layouts/MacLayout.astro";
+import MacDesktop from "../layouts/MacDesktop.astro";
 ---
 
-<Layout title="ethanlew.dev - Projects">
-	<div class="flex flex-col gap-4">
-		<div>
-			<h1>Projects</h1>
-			<a class="btn text-xl" href="/">
+<MacDesktop title="Projects">
+	<div class="h-full max-h-full flex flex-col gap-2 p-8">
+		<div class="flex flex-col gap-2">
+			<h1 class="text-3xl font-bold font-chicago">Projects</h1>
+			<a
+				class="w-fit flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
+				href="/"
+			>
 				<i class="i-fa6-solid:arrow-left"></i>
-				Back to Index Card
+				Back to Index Page
 			</a>
 		</div>
 
-		<div class="flex flex-col gap-4 p-4">
-			<p>Here are some of the projects I've worked on:</p>
-
-			<ul class="list-disc-inside">
+		<article class="prose">
+			<ul>
 				<li>
 					ethanlew.dev
-					<ul class="ml-8 list-disc-inside">
+					<ul>
 						<li>
 							Built using <i
 								class="i-logos:astro-icon mr-1 align-middle leading-none"></i>{
@@ -33,7 +34,7 @@ import Layout from "../layouts/MacLayout.astro";
 				</li>
 				<li>
 					psvm
-					<ul class="ml-8 list-disc-inside">
+					<ul>
 						<li>Pokémon Showdown's battle simulator as a C++ library</li>
 						<li>
 							Bundled with <i
@@ -45,7 +46,7 @@ import Layout from "../layouts/MacLayout.astro";
 					</ul>
 					<li>
 						CalSafe
-						<ul class="ml-8 list-disc-inside">
+						<ul>
 							<li>
 								A <i class="i-logos:nextjs-icon mr-1 align-middle leading-none">
 								</i>Next.js web app that plots Southern California vehicle
@@ -60,7 +61,7 @@ import Layout from "../layouts/MacLayout.astro";
 
 						<li>
 							CovidMap
-							<ul class="ml-8 list-disc-inside">
+							<ul>
 								<li>
 									Plots graphs and diagrams of CoVID-19 metrics sourced from
 									multiple REST APIs
@@ -89,7 +90,7 @@ import Layout from "../layouts/MacLayout.astro";
 						</li>
 						<li>
 							ScribbleBounce
-							<ul class="ml-8 list-disc-inside">
+							<ul>
 								<li>
 									A <i class="i-logos:unity mr-1 align-middle leading-none"
 									></i>Unity game
@@ -102,7 +103,7 @@ import Layout from "../layouts/MacLayout.astro";
 						</li>
 					</li>
 
-					<p class="mt-4">
+					<p>
 						For more information, please visit my
 						<a
 							class="underline"
@@ -114,6 +115,6 @@ import Layout from "../layouts/MacLayout.astro";
 					</p>
 				</li>
 			</ul>
-		</div>
+		</article>
 	</div>
-</Layout>
+</MacDesktop>

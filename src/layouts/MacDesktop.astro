@@ -1,0 +1,86 @@
+---
+import { Image } from "astro:assets";
+import MenuBar from "../components/macos/MenuBar.astro";
+import systemFloppy from "./_assets/System Floppy.svg";
+import trash from "./_assets/Trash.svg";
+import Window from "../components/macos/Window.astro";
+
+const { title } = Astro.props;
+
+const links = [
+	{
+		name: "File",
+		url: "#",
+	},
+	{
+		name: "Edit",
+		url: "#",
+	},
+	{
+		name: "View",
+		url: "#",
+	},
+	{
+		name: "Window",
+		url: "#",
+	},
+	{
+		name: "Help",
+		url: "#",
+	},
+];
+---
+
+<!doctype html>
+<html lang="en" class="">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+		<script
+			is:inline
+			data-goatcounter="https://ethanlewdotdev.goatcounter.com/count"
+			async
+			src="//gc.zgo.at/count.js"></script>
+
+		<slot name="head" />
+	</head>
+	<body>
+		<div class="relative h-screen max-h-screen flex flex-col">
+			<header
+				class="fixed left-0 top-0 z-1 h-fit w-full border-b border-black border-solid"
+			>
+				<MenuBar links={links} />
+			</header>
+			<main
+				class="relative h-fit max-h-full w-full flex flex-1 flex-col items-center justify-center bg-neutral-200 p-8"
+			>
+				<!-- desktop icons -->
+				<div class="absolute right-0 top-7">
+					<Image src={systemFloppy} alt="System Software" loading="eager" />
+				</div>
+
+				<div class="absolute bottom-3 right-3">
+					<Image src={trash} alt="Trash" loading="eager" />
+				</div>
+
+				<!-- window -->
+				<div class="h-full max-h-full max-w-3xl pt-6">
+					<Window title={title}>
+						<slot />
+					</Window>
+				</div>
+			</main>
+		</div>
+	</body>
+</html>
+
+<style>
+	:root {
+		--uno-apply: overscroll-none;
+	}
+</style>

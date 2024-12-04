@@ -1,32 +1,35 @@
 ---
-import Layout from "../layouts/MacLayout.astro";
+import Layout from "../layouts/MacDesktop.astro";
 ---
 
-<Layout title="ethanlew.dev - About">
-	<div class="flex flex-col gap-4">
-		<div>
-			<h1>About this website</h1>
-			<a class="btn text-xl" href="/">
+<Layout title="About">
+	<div class="flex flex-col gap-4 p-8">
+		<div class="flex flex-col gap-2">
+			<h1 class="text-3xl font-bold font-chicago">About this site</h1>
+			<a
+				class="w-fit flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
+				href="/"
+			>
 				<i class="i-fa6-solid:arrow-left"></i>
-				Back to Index Card
+				Back to Index Page
 			</a>
 		</div>
 
-		<div class="flex flex-col gap-4 p-4">
+		<article class="prose">
 			<p>
-				The design of this site is inspired by Classic Mac OS. It uses the
-				following open source libraries:
+				The design of this website is based on
+				<a
+					class="underline"
+					href="https://www.figma.com/community/file/907684770824957775/macos-classic"
+					target="_blank"
+					rel="noopener noreferrer">MacOS Classic</a
+				>
+				by Brett Anderson via Figma.
 			</p>
 
+			<p>Additionally, the following open-source components are used:</p>
+
 			<ul class="list-disc-inside">
-				<li>
-					<a
-						class="underline"
-						href="https://github.com/opencoca/system7.css"
-						target="_blank"
-						rel="noopener noreferrer">system7.css</a
-					>
-				</li>
 				<li>
 					<a
 						class="underline"
@@ -46,17 +49,6 @@ import Layout from "../layouts/MacLayout.astro";
 			</ul>
 
 			<p>
-				Additionally, some assets are taken from
-				<a
-					class="underline"
-					href="https://www.figma.com/community/file/907684770824957775/macos-classic"
-					target="_blank"
-					rel="noopener noreferrer">MacOS Classic</a
-				>
-				by Brett Anderson via Figma.
-			</p>
-
-			<p>
 				<em>ethanlew.dev</em> is built using <i
 					class="i-logos:astro-icon mr-1 align-middle leading-none"></i>{
 					Astro.generator
@@ -65,6 +57,6 @@ import Layout from "../layouts/MacLayout.astro";
 				Pages. It currently contains this "about-me" page and an
 				under-construction blog page.
 			</p>
-		</div>
+		</article>
 	</div>
 </Layout>

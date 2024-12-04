@@ -1,72 +1,81 @@
 ---
-import Layout from "../layouts/MacLayout.astro";
+import MacDesktop from "../layouts/MacDesktop.astro";
 ---
 
-<Layout title="ethanlew.dev - About">
-	<div class="h-full flex flex-col">
-		<div class="h-full flex flex-grow flex-col gap-3 px-4 py-0">
+<MacDesktop title="ethanlew.dev">
+	<div class="flex flex-col p-4">
+		<div class="mb-8 h-full flex flex-grow flex-col gap-3 px-4">
 			<h1 class="text-5xl">
-				<span class="font-lobster">Hello</span>, I'm Ethan Lew!
+				<span class="font-lobster">Hello</span>, <span class="font-chicago"
+					>I'm Ethan Lew!</span
+				>
 			</h1>
-			<div class="my-auto flex flex-col gap-3">
+			<article class="prose">
 				<p>
 					I'm a software developer with a B.S. Computer Science degree from Cal
 					State Fullerton. I have experience with the following technologies:
 				</p>
 
-				<ul class="list-disc-inside">
+				<ul>
 					<li>
-						<i class="i-logos:html-5 mr-1 align-text-bottom"></i>HTML, <i
-							class="i-logos:css-3 mr-1 align-text-bottom"></i>CSS,
-						<i class="i-logos:javascript mr-1 align-text-bottom"></i>JavaScript, <i
-							class="i-logos:typescript-icon mr-1 align-text-bottom"
-						></i>TypeScript
+						<i class="i-logos:html-5 mr-1"></i>HTML, <i
+							class="i-logos:css-3 mr-1"></i>CSS,
+						<i class="i-logos:javascript mr-1"></i>JavaScript, <i
+							class="i-logos:typescript-icon mr-1"></i>TypeScript
 					</li>
 					<li>
-						<i class="i-logos:react mr-1 align-text-bottom"></i>React,
-						<i class="i-logos:svelte-icon mr-1 align-text-bottom"></i>Svelte,
-						<i class="i-logos:astro-icon mr-1 align-text-bottom"></i>Astro
+						<i class="i-logos:react mr-1"></i>React,
+						<i class="i-logos:svelte-icon mr-1"></i>Svelte,
+						<i class="i-logos:astro-icon mr-1"></i>Astro
 					</li>
 					<li>
-						<i class="i-logos:nextjs-icon mr-1 align-text-bottom"></i>Next.js, <i
-							class="i-logos:svelte-icon mr-1 align-text-bottom"></i>SvelteKit
+						<i class="i-logos:nextjs-icon mr-1"></i>Next.js, <i
+							class="i-logos:svelte-icon mr-1"></i>SvelteKit
 					</li>
 					<li>
-						<i class="i-logos:c-sharp mr-1 align-text-bottom"></i>C#/<i
-							class="i-logos:dotnet mr-1 align-text-bottom"></i>.NET,
-						<i class="i-logos:dotnet mr-1 align-text-bottom"></i>Blazor,
-						<i class="i-logos:xamarin mr-1 align-text-bottom"></i>.NET MAUI
+						<i class="i-logos:c-sharp mr-1"></i>C#/<i
+							class="i-logos:dotnet mr-1"></i>.NET,
+						<i class="i-logos:dotnet mr-1"></i>Blazor,
+						<i class="i-logos:xamarin mr-1"></i>.NET MAUI
 					</li>
 				</ul>
 
 				<p>For more information, click the buttons below.</p>
 
 				<p>
-					<strong>I'm currently seeking full-time employment!</strong> Please view
-					the "Resumé" card by clicking the button below.
+					<strong>I'm currently seeking full-time employment!</strong> For more information,
+					click the "Resumé" button below.
 				</p>
-			</div>
+			</article>
 		</div>
 
 		<div
 			class="flex flex-row justify-center gap-4 rounded-md bg-neutral-400 px-2 py-4"
 		>
-			<a class="btn overflow-hidden rounded-md text-2xl !p-1" href="/resume">
-				<i class="i-fa6-solid:address-card mr-1 align-text-bottom"></i>Resumé
-			</a>
-			<a class="btn overflow-hidden rounded-md text-2xl !p-1" href="/contact">
-				<i class="i-fa6-solid:envelope mr-1 align-text-bottom"></i>Contact
-			</a>
-			<a class="btn overflow-hidden rounded-md text-2xl !p-1" href="/projects">
-				<i class="i-fa6-solid:brain mr-1 align-text-bottom"></i>Projects
+			<a
+				class="flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
+				href="/resume"
+			>
+				<i class="i-fa6-solid:address-card"></i>Resumé
 			</a>
 			<a
-				class="btn overflow-hidden rounded-md text-2xl !p-1"
+				class="flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
+				href="/contact"
+			>
+				<i class="i-fa6-solid:envelope"></i>Contact
+			</a>
+			<a
+				class="flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
+				href="/projects"
+			>
+				<i class="i-fa6-solid:brain"></i>Projects
+			</a>
+			<a
+				class="flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
 				href="/about-site"
 			>
-				<i class="i-fa6-solid:circle-question mr-1 align-text-bottom"></i>About
-				this site
+				<i class="i-fa6-solid:circle-question"></i>About this site
 			</a>
 		</div>
 	</div>
-</Layout>
+</MacDesktop>

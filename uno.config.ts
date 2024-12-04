@@ -4,6 +4,7 @@ import {
 	presetIcons,
 	presetWebFonts,
 	defineConfig,
+	transformerDirectives,
 } from "unocss";
 
 export default defineConfig({
@@ -11,12 +12,11 @@ export default defineConfig({
 		presetUno({
 			dark: "class",
 		}),
-
 		presetTypography(),
 		presetIcons({
 			extraProperties: {
 				display: "inline-block",
-				"vertical-align": "middle",
+				"vertical-align": "baseline",
 			},
 		}),
 		presetWebFonts({
@@ -28,4 +28,26 @@ export default defineConfig({
 			},
 		}),
 	],
+
+	theme: {
+		fontFamily: {
+			chicago: "ChicagoFLF, sans-serif",
+			mac: "Geneva, Tahoma, Verdana, sans-serif",
+		},
+	},
+
+	preflights: [
+		{
+			getCSS: () => `
+@font-face {
+	font-family: 'ChicagoFLF';
+	font-style: normal;
+	font-weight: 500;
+	src: local('ChicagoFLF'), url('https://fonts.cdnfonts.com/s/27099/ChicagoFLF.woff') format('woff');
+}
+`,
+		},
+	],
+
+	transformers: [transformerDirectives()],
 });

@@ -1,30 +1,36 @@
 ---
-import Layout from "../layouts/MacLayout.astro";
+import Layout from "../layouts/MacDesktop.astro";
 ---
 
-<Layout title="ethanlew.dev - Resumé">
-	<div class="flex flex-col gap-4">
-		<div>
-			<h1>Resumé</h1>
-			<a class="btn text-xl" href="/">
+<Layout title="Resumé">
+	<div class="flex flex-col gap-4 p-8">
+		<div class="flex flex-col gap-2">
+			<h1 class="text-3xl font-bold font-chicago">Resumé</h1>
+			<a
+				class="w-fit flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
+				href="/"
+			>
 				<i class="i-fa6-solid:arrow-left"></i>
-				Back to Index Card
+				Back to Index Page
 			</a>
 		</div>
+		<article class="prose">
+			<div class="flex flex-col items-center gap-4">
+				<div class="not-prose border-2 rounded-md">
+					<iframe
+						title="Resumé"
+						src="https://drive.google.com/file/d/1UnzLa1QXqxL_RCRCOSA0OtZpnqF3MZAM/preview"
+						class="h-2xl w-lg"
+						allow="autoplay"></iframe>
+				</div>
 
-		<div class="border-2 rounded-md">
-			<iframe
-				title="Resumé"
-				src="https://drive.google.com/file/d/1UnzLa1QXqxL_RCRCOSA0OtZpnqF3MZAM/preview"
-				class="h-80 w-full"
-				allow="autoplay"></iframe>
-		</div>
-
-		<a
-			href="https://drive.google.com/file/d/1UnzLa1QXqxL_RCRCOSA0OtZpnqF3MZAM/view?usp=sharing"
-			class="btn"
-			target="_blank"
-			rel="noopener noreferrer">Download</a
-		>
+				<a
+					href="https://drive.google.com/file/d/1UnzLa1QXqxL_RCRCOSA0OtZpnqF3MZAM/view?usp=sharing"
+					class="not-prose w-fit flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
+					target="_blank"
+					rel="noopener noreferrer">Download</a
+				>
+			</div>
+		</article>
 	</div>
 </Layout>
