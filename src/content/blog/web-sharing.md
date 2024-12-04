@@ -1,12 +1,9 @@
 ---
 title: Sharing your blog content
 description: Easily add social sharing and comments to your blog posts at no cost
-date: 2024-12-02
 tags:
   - webdev
 ---
-
-import { BaselineStatus } from "astro-embed";
 
 ## Sharing
 
@@ -51,9 +48,7 @@ of your post and `entry.data.title` with the title of your post.
 ## Web Share API
 
 The [Web Share API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API) is a new-ish way to invoke the
-user's native share sheet. At the time of writing, it is only fully supported on Edge and Safari:
-
-<BaselineStatus id="share" />
+user's native share sheet. At the time of writing, it is only fully supported on Edge and Safari.
 
 It's pretty simple to use. Just add a button to your post that calls `navigator.share`:
 

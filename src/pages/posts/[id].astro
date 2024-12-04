@@ -3,31 +3,32 @@ import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { format } from "date-fns";
 import TableOfContents from "../../components/TableOfContents.astro";
+import { render } from "astro:content";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
 	const blogEntries = await getCollection("blog");
-	return blogEntries.map((entry: any) => ({
-		params: { slug: entry.slug },
-		props: { entry },
+	return blogEntries.map((post) => ({
+		params: { id: post.id },
+		props: { post },
 	}));
 }
 // 2. For your template, you can get the entry directly from the prop
-const { entry } = Astro.props;
-const { Content, remarkPluginFrontmatter, headings } = await entry.render();
+const { post } = Astro.props;
+const { Content, remarkPluginFrontmatter, headings } = await render(post);
 
 // Metadata
-const formattedDate = format(new Date(entry.data.date), "do LLLL, yyyy");
-const telegramShareURL = `http://telegram.me/share/url?url=${encodeURI(Astro.url.href)}&text=${encodeURI(entry.data.title)}`;
+const formattedDate = format(new Date(post.data.created), "do LLLL, yyyy");
+const telegramShareURL = `http://telegram.me/share/url?url=${encodeURI(Astro.url.href)}&text=${encodeURI(post.data.title)}`;
 const bskyShareURL = `http://bsky.app/intent/compose?text=${encodeURI(Astro.url.href)}`;
 const shareData = {
 	title: "ethanlew.dev",
-	text: entry.data.title,
+	text: post.data.title,
 	url: Astro.url.href,
 };
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={post.data.title}>
 	<div class="mx-auto px-10 container">
 		<div
 			class="grid gap-3 lt-md:block"
@@ -40,7 +41,7 @@ const shareData = {
 
 			<main>
 				<header>
-					<h1 class="text-4xl font-semibold leading-10">{entry.data.title}</h1>
+					<h1 class="text-4xl font-semibold leading-10">{post.data.title}</h1>
 					<div
 						class="w-fit flex flex-row items-center justify-center space-x-3"
 					>
@@ -58,16 +59,17 @@ const shareData = {
 						<i class="i-fa6-solid:tags"></i>
 						<ul class="inline-flex flex-row space-x-2">
 							{
-								entry.data.tags.map((tag: string) => (
-									<li>
-										<a
-											href={`/tags/${tag}`}
-											class="font-mono underline decoration-dotted"
-										>
-											#{tag}
-										</a>
-									</li>
-								))
+								post.data.tags &&
+									post.data.tags.map((tag: string) => (
+										<li>
+											<a
+												href={`/tags/${tag}`}
+												class="font-mono underline decoration-dotted"
+											>
+												#{tag}
+											</a>
+										</li>
+									))
 							}
 						</ul>
 					</div>
