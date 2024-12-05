@@ -49,7 +49,7 @@ function setup() {
 	const options = {
 		// root: document.querySelector("main"),
 		rootMargin: "0px",
-		threshold: 0,
+		threshold: 0.5,
 	};
 	const callback = (entries: IntersectionObserverEntry[]) => {
 		for (const entry of entries) {
