@@ -1,14 +1,18 @@
 ---
-import TableOfContentsHeading from "./TableOfContentsHeading.astro";
+import TableOfContentsHeading, {
+	type Heading,
+} from "./TableOfContentsHeading.astro";
 
-interface TreeItem {
-	depth: number;
-}
-function buildTree(flatArray: TreeItem[]) {
-	const root: { children: any[] } = { children: [] };
+function buildTree(flatArray: Heading[]) {
+	const root: Heading = {
+		children: [],
+		depth: 1,
+		slug: "",
+		text: "",
+	};
 	const stack = [root];
 
-	flatArray.forEach((item) => {
+	for (const item of flatArray) {
 		// Ensure the stack matches the item's depth level
 		while (stack.length > item.depth) {
 			stack.pop();
@@ -17,11 +21,11 @@ function buildTree(flatArray: TreeItem[]) {
 		// Attach item as a child of the current parent in the stack
 		const parent = stack[stack.length - 1];
 		const newNode = { ...item, children: [] };
-		parent.children.push(newNode);
+		parent.children?.push(newNode as Heading);
 
 		// Add the new node to the stack
 		stack.push(newNode);
-	});
+	}
 
 	return root.children;
 }
@@ -33,6 +37,9 @@ const headingsTree = buildTree(headings);
 
 <nav class="relative h-fit flex" data-toc>
 	<ul class:list={["grid w-fit gap-3 pl-2"]} data-toc-list-top>
-		{headingsTree.map((node) => <TableOfContentsHeading heading={node} />)}
+		{
+			headingsTree &&
+				headingsTree.map((node) => <TableOfContentsHeading heading={node} />)
+		}
 	</ul>
 </nav>
