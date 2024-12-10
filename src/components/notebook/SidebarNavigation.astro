@@ -1,0 +1,107 @@
+---
+import SidebarSubcollection from "./SidebarSubcollection.astro";
+
+interface Props {
+	tree: ListItem[];
+	name?: string;
+}
+const { tree, name } = Astro.props as Props;
+
+interface ListItem {
+	id: string;
+	permalink: string;
+	title: string;
+}
+
+interface TreeNode {
+	name: string;
+	children: TreeNode[];
+	permalink?: string;
+	title?: string;
+}
+
+function listToTree(list: ListItem[]): TreeNode[] {
+	const root: TreeNode[] = [];
+
+	list.forEach(({ id, permalink, title }) => {
+		const segments = id.split("/");
+		let currentLevel = root;
+
+		segments.forEach((segment, index) => {
+			let existingNode = currentLevel.find((node) => node.name === segment);
+
+			if (!existingNode) {
+				existingNode = {
+					name: segment,
+					children: [],
+				};
+				currentLevel.push(existingNode);
+			}
+
+			// If this is the leaf node, add title and permalink
+			if (index === segments.length - 1) {
+				existingNode.permalink = permalink;
+				existingNode.title = title;
+			}
+
+			currentLevel = existingNode.children;
+		});
+	});
+
+	// Recursively sort the tree by title
+	function sortTree(nodes: TreeNode[]): void {
+		nodes.sort((a, b) => {
+			if (a.title && b.title) {
+				return a.title.localeCompare(b.title); // Sort by title for leaf nodes
+			}
+			return a.name.localeCompare(b.name); // Sort by name for intermediate nodes
+		});
+
+		nodes.forEach((node) => sortTree(node.children)); // Recurse into children
+	}
+
+	sortTree(root); // Start sorting from the root
+
+	return root;
+}
+
+const _tree = listToTree(tree);
+
+const top_level = _tree.filter((node) => node.children.length === 0);
+const subcollections = _tree.filter((node) => node.children.length > 0);
+---
+
+<!-- render top level tree nodes -->
+<ul class="space-y-4">
+	<li>
+		<details class="group">
+			<summary>
+				<div
+					class="flex flex-row items-center justify-between text-xl font-semibold"
+				>
+					{name || "Index"}
+					<i
+						class="i-fa6-solid:angle-right transition-transform group-open:rotate-90"
+					></i>
+				</div>
+			</summary>
+			<ul class="border-l-2 pl-4">
+				{
+					top_level.map((node) => (
+						<li>
+							<a href={node.permalink}>{node.title}</a>
+						</li>
+					))
+				}
+			</ul>
+		</details>
+	</li>
+	{subcollections.map((node) => <SidebarSubcollection tree={node} />)}
+</ul>
+
+<style>
+	details summary::-webkit-details-marker,
+	details summary::marker {
+		--uno-apply: hidden;
+	}
+</style>

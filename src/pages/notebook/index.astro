@@ -1,0 +1,15 @@
+---
+import { getCollection, render } from "astro:content";
+import SidebarNavigation from "../../components/notebook/SidebarNavigation.astro";
+import NotebookLayout from "../../layouts/NotebookLayout.astro";
+
+const posts = await getCollection("notebook");
+
+const postInfo = posts.map((post) => ({
+	id: post.id,
+	permalink: post.data.permalink,
+	title: post.data.title,
+}));
+---
+
+<NotebookLayout title="Notebook" tree={postInfo} />

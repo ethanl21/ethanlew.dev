@@ -1,0 +1,54 @@
+---
+import { words, titleCase } from "tiny-case";
+
+interface Props {
+	tree: ListItem;
+	name?: string;
+}
+
+interface ListItem {
+	name: string;
+	children: ListItem[];
+	permalink?: string;
+	title?: string;
+}
+
+const { tree, name } = Astro.props as Props;
+---
+
+<li>
+	<details class="group">
+		<summary>
+			<div
+				class="flex flex-row items-center justify-between text-xl font-semibold"
+			>
+				{name || words(tree.name).map(titleCase).join(" ")}
+				<i
+					class="i-fa6-solid:angle-right transition-transform group-open:rotate-90"
+				></i>
+			</div>
+		</summary>
+		<ul class="border-l-2 pl-4">
+			{
+				tree.children.map((child) => {
+					if (child.children.length > 0) {
+						return <SidebarSubcollection tree={child} />;
+					} else {
+						return (
+							<li>
+								<a href={child.permalink}>{child.title}</a>
+							</li>
+						);
+					}
+				})
+			}
+		</ul>
+	</details>
+</li>
+
+<style>
+	details summary::-webkit-details-marker,
+	details summary::marker {
+		--uno-apply: hidden;
+	}
+</style>

@@ -18,7 +18,7 @@ const ObsidianDocumentSchema = z.object({
 	updated: z.date(), // Defaults to Stats -> mtime
 });
 
-const blogCollection = defineCollection({
+const notebookCollection = defineCollection({
 	loader: ObsidianMdLoader({
 		base: "src/content/Notebook",
 		author: "Ethan Lew",
@@ -28,5 +28,5 @@ const blogCollection = defineCollection({
 });
 
 export const collections = {
-	blog: blogCollection,
+	notebook: notebookCollection,
 };

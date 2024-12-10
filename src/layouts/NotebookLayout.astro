@@ -1,0 +1,53 @@
+---
+import SidebarNavigation from "../components/notebook/SidebarNavigation.astro";
+
+interface TreeItem {
+	id: string;
+	permalink: string;
+	title: string;
+}
+interface Props {
+	title: string;
+	tree: TreeItem[];
+}
+
+const { title, tree } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="min-h-screen flex flex-col">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+
+		<script
+			is:inline
+			data-goatcounter="https://ethanlewdotdev.goatcounter.com/count"
+			async
+			src="//gc.zgo.at/count.js"></script>
+
+		<slot name="head" />
+	</head>
+	<body class="flex flex-grow flex-col">
+		<div class="mx-auto flex flex-grow flex-col container">
+			<div
+				class="grid mx-auto flex-grow container"
+				style="grid-template-columns: 1fr 3fr 1fr;"
+			>
+				<aside class="bg-blue p-4">
+					<SidebarNavigation tree={tree} />
+				</aside>
+				<main>
+					<slot />
+				</main>
+				<aside class="bg-blue p-4"></aside>
+			</div>
+		</div>
+
+		<footer class="flex-shrink">footer</footer>
+	</body>
+</html>
