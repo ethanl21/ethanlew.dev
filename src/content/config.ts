@@ -20,9 +20,9 @@ const ObsidianDocumentSchema = z.object({
 
 const blogCollection = defineCollection({
 	loader: ObsidianMdLoader({
-		base: "src/content/blog",
+		base: "src/content/Notebook",
 		author: "Ethan Lew",
-		pattern: "**/*.{md,mdx}",
+		pattern: "**/*.md",
 	}),
 	schema: ObsidianDocumentSchema,
 });
