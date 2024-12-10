@@ -15,11 +15,13 @@ const { Content } = await render(post);
 
 const posts = await getCollection("notebook");
 
-const postInfo = posts.map((post) => ({
-	id: post.id,
-	permalink: post.data.permalink,
-	title: post.data.title,
-}));
+const postInfo = posts
+	.map((post) => ({
+		id: post.id,
+		permalink: post.data.permalink,
+		title: post.data.title,
+	}))
+	.filter((post) => post.id !== "index");
 ---
 
 <NotebookLayout title={post.data.title} tree={postInfo}>
