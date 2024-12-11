@@ -28,6 +28,9 @@ importers:
       "@iconify-json/vscode-icons":
         specifier: ^1.2.3
         version: 1.2.3
+      "@neodrag/vanilla":
+        specifier: ^2.2.0
+        version: 2.2.0
       astro:
         specifier: ^5.0.2
         version: 5.0.2(@types/node@18.19.64)(jiti@1.21.6)(lightningcss@1.28.2)(rollup@4.26.0)(terser@5.36.0)(tsx@4.19.2)(typescript@5.6.3)(yaml@2.6.0)
@@ -1383,6 +1386,12 @@ packages:
     resolution:
       {
         integrity: sha512-6DSA68U0I7XweekuYet+Gz8Z4HVi4zzcCin2H/py3eaGkvM30afdmMGw3K4QxCUzKKnYSwPlhq0ao9BNIMInmg==,
+      }
+
+  "@neodrag/vanilla@2.2.0":
+    resolution:
+      {
+        integrity: sha512-zqa3wV1+pTUCRdXKHLB8DiNR5+7iG373C4KWXSy+rZ4yNxa5sfbbcoTo2DTrk2YfgapOtkAwPhPbIkmT7XXDfg==,
       }
 
   "@nodelib/fs.scandir@2.1.5":
@@ -7304,6 +7313,8 @@ snapshots:
   "@mogeko/utils@0.6.2":
     dependencies:
       github-slugger: 2.0.0
+
+  "@neodrag/vanilla@2.2.0": {}
 
   "@nodelib/fs.scandir@2.1.5":
     dependencies:
