@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+import Search from "astro-pagefind/components/Search";
 import SidebarNavigation from "../components/notebook/SidebarNavigation.astro";
 
 interface TreeItem {
@@ -8,10 +10,18 @@ interface TreeItem {
 }
 interface Props {
 	title: string;
-	tree: TreeItem[];
 }
+const { title } = Astro.props;
 
-const { title, tree } = Astro.props;
+const posts = await getCollection("notebook");
+
+const postInfo = posts
+	.map((post) => ({
+		id: post.id,
+		permalink: post.data.permalink,
+		title: post.data.title,
+	}))
+	.filter((post) => post.id !== "index");
 ---
 
 <!doctype html>
@@ -32,22 +42,68 @@ const { title, tree } = Astro.props;
 
 		<slot name="head" />
 	</head>
-	<body class="flex flex-grow flex-col">
+	<body class="flex flex-grow flex-col" data-pagefind-body>
 		<div class="mx-auto flex flex-grow flex-col container">
 			<div
 				class="grid mx-auto flex-grow container"
 				style="grid-template-columns: 1fr 3fr 1fr;"
 			>
-				<aside class="bg-blue p-4">
-					<SidebarNavigation tree={tree} />
+				<aside class="bg-blue p-4" data-pagefind-ignore>
+					<button
+						data-search-dialog-toggle
+						class="h-8 w-full flex flex-row items-center justify-between border-2 border-slate-300 rounded-md bg-slate-200 p-2 text-slate-500"
+					>
+						Search
+						<i class="i-fa6-solid:magnifying-glass"></i>
+					</button>
+					<SidebarNavigation tree={postInfo} />
 				</aside>
 				<main>
 					<slot />
 				</main>
-				<aside class="bg-blue p-4"></aside>
+				<aside class="bg-blue p-4" data-pagefind-ignore></aside>
 			</div>
 		</div>
 
-		<footer class="flex-shrink">footer</footer>
+		<footer class="flex-shrink" data-pagefind-ignore>footer</footer>
+
+		<dialog
+			data-search-dialog
+			class="size-full bg-transparent backdrop-blur-lg backdrop-brightness-90"
+		>
+			<div class="mx-auto pt-8 container">
+				<Search />
+			</div>
+		</dialog>
+
+		<script>
+			window.addEventListener("DOMContentLoaded", () => {
+				const searchDialog: HTMLDialogElement | null = document.querySelector(
+					"[data-search-dialog]",
+				);
+				const searchDialogToggle = document.querySelector(
+					"[data-search-dialog-toggle]",
+				);
+
+				if (searchDialogToggle && searchDialog) {
+					searchDialogToggle.addEventListener("click", () => {
+						searchDialog.show();
+					});
+
+					searchDialog.addEventListener("click", (event) => {
+						if (event.target === searchDialog) {
+							searchDialog.close();
+						}
+					});
+				}
+			});
+		</script>
 	</body>
 </html>
+
+<style is:global>
+	.pagefind-ui__results-area {
+		--uno-apply: bg-slate-100 p-2 rounded-md shadow-md border-2 border-solid
+			border-slate-200;
+	}
+</style>

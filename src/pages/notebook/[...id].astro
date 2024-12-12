@@ -24,9 +24,27 @@ const postInfo = posts
 	.filter((post) => post.id !== "index");
 ---
 
-<NotebookLayout title={post.data.title} tree={postInfo}>
+<NotebookLayout title={post.data.title}>
 	<article class="mx-auto prose">
 		<h1>{post.data.title}</h1>
 		<Content />
 	</article>
+
+	<script
+		is:inline
+		src="https://giscus.app/client.js"
+		data-repo="ethanl21/ethanlew.dev"
+		data-repo-id="R_kgDONPnLdA"
+		data-category="Announcements"
+		data-category-id="DIC_kwDONPnLdM4ClGzy"
+		data-mapping="pathname"
+		data-strict="0"
+		data-reactions-enabled="1"
+		data-emit-metadata="0"
+		data-input-position="top"
+		data-theme="preferred_color_scheme"
+		data-lang="en"
+		data-loading="lazy"
+		crossorigin="anonymous"
+		async></script>
 </NotebookLayout>

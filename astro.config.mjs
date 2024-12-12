@@ -7,6 +7,7 @@ import expressiveCode from "astro-expressive-code";
 import rehypeSectionize from "@hbsnow/rehype-sectionize";
 import readingTime from "astro-reading-time";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import pagefind from "astro-pagefind";
 
 // https://astro.build/config
 export default defineConfig({
@@ -22,6 +23,7 @@ export default defineConfig({
 		mdx(),
 		sitemap(),
 		readingTime(),
+		pagefind(),
 	],
 	site: "https://ethanlew.dev",
 	markdown: {
