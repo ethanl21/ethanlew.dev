@@ -1,13 +1,11 @@
 // @ts-check
 import { defineConfig } from "astro/config";
-import unocss from "unocss/astro";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-	integrations: [
-		unocss({
-			injectReset: true,
-		}),
-	],
 	site: "https://ethanlew.dev",
+	vite: {
+		plugins: [tailwindcss()],
+	},
 });

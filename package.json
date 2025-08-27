@@ -19,13 +19,15 @@
     "@iconify-json/logos": "^1.2.3",
     "@iconify-json/vscode-icons": "^1.2.3",
     "@neodrag/vanilla": "^2.3.1",
-    "astro": "^5.0.2",
+    "@tailwindcss/vite": "^4.1.12",
+    "astro": "^5.13.4",
+    "tailwindcss": "^4.1.12",
     "typescript": "^5.6.3"
   },
   "devDependencies": {
+    "@iconify/tailwind4": "^1.0.6",
+    "@tailwindcss/typography": "^0.5.16",
     "@typescript-eslint/parser": "^8.14.0",
-    "@unocss/eslint-config": "^0.64.0",
-    "@unocss/reset": "^0.64.0",
     "eslint": "^9.14.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-astro": "^1.3.1",
@@ -34,8 +36,8 @@
     "lint-staged": "^15.2.10",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1",
-    "sharp": "^0.33.5",
-    "unocss": "^0.65.1"
+    "prettier-plugin-tailwindcss": "^0.6.14",
+    "sharp": "^0.33.5"
   },
   "lint-staged": {
     "*.{astro,mdx,md,js,ts,mjs,mts}": [

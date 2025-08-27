@@ -3,14 +3,14 @@ import MacDesktop from "../layouts/MacDesktop.astro";
 ---
 
 <MacDesktop title="Projects">
-	<div class="h-full max-h-full flex flex-col gap-2 p-8">
+	<div class="flex h-full max-h-full flex-col gap-2 p-8">
 		<div class="flex flex-col gap-2">
-			<h1 class="text-3xl font-bold font-chicago">Projects</h1>
+			<h1 class="font-chicago text-3xl font-bold">Projects</h1>
 			<a
-				class="w-fit flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
+				class="flex w-fit flex-row items-center gap-1 rounded-md border-2 border-black bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
 				href="/"
 			>
-				<i class="i-fa6-solid:arrow-left"></i>
+				<i class="icon-[fa6-solid--arrow-left]"></i>
 				Back to Index Page
 			</a>
 		</div>
@@ -22,13 +22,13 @@ import MacDesktop from "../layouts/MacDesktop.astro";
 					<ul>
 						<li>
 							Built using <i
-								class="i-logos:astro-icon mr-1 align-middle leading-none"></i>{
-								Astro.generator
-							}
+								class="icon-[logos--astro-icon] mr-1 align-middle leading-none"
+							></i>{Astro.generator}
 						</li>
 						<li>
 							Styled with <i
-								class="i-logos:unocss mr-1 align-middle leading-none"></i>UnoCSS
+								class="icon-[logos--tailwindcss-icon] mr-1 align-middle leading-none"
+							></i>TailwindCSS
 						</li>
 					</ul>
 				</li>
@@ -38,9 +38,9 @@ import MacDesktop from "../layouts/MacDesktop.astro";
 						<li>Pokémon Showdown's battle simulator as a C++ library</li>
 						<li>
 							Bundled with <i
-								class="i-logos:esbuild mr-1 align-middle leading-none"
+								class="icon-[logos--esbuild] mr-1 align-middle leading-none"
 							></i>esbuild, built using <i
-								class="i-vscode-icons:file-type-meson mr-1 align-middle leading-none"
+								class="icon-[vscode-icons--file-type-meson] mr-1 align-middle leading-none"
 							></i>Meson
 						</li>
 					</ul>
@@ -48,14 +48,16 @@ import MacDesktop from "../layouts/MacDesktop.astro";
 						CalSafe
 						<ul>
 							<li>
-								A <i class="i-logos:nextjs-icon mr-1 align-middle leading-none">
+								A <i
+									class="icon-[logos--nextjs-icon] mr-1 align-middle leading-none"
+								>
 								</i>Next.js web app that plots Southern California vehicle
 								collision data on a map
 							</li>
 							<li>
 								Styled with <i
-									class="i-logos:tailwindcss-icon mr-1 align-middle leading-none"
-								></i>Tailwind CSS and shadcn/ui
+									class="icon-[logos--tailwindcss-icon] mr-1 align-middle leading-none"
+								></i>TailwindCSS and shadcn/ui
 							</li>
 						</ul>
 
@@ -67,23 +69,26 @@ import MacDesktop from "../layouts/MacDesktop.astro";
 									multiple REST APIs
 								</li>
 								<li>
-									A <i class="i-logos:react mr-1 align-middle leading-none"
+									A <i
+										class="icon-[logos--react] mr-1 align-middle leading-none"
 									></i>React app built with <i
-										class="i-logos:vitejs mr-1 align-middle leading-none"
+										class="icon-[logos--vitejs] mr-1 align-middle leading-none"
 									></i>Vite
 								</li>
 							</ul>
 						</li>
 						<li>
 							RetroRatings
-							<ul class="ml-8 list-disc-inside">
+							<ul class="list-disc-inside ml-8">
 								<li>
-									A <i class="i-logos:react mr-1 align-middle leading-none"
+									A <i
+										class="icon-[logos--react] mr-1 align-middle leading-none"
 									></i>React app used to rate items similar to Yelp
 								</li>
 								<li>
 									Uses <i
-										class="i-logos:firebase mr-1 align-middle leading-none"></i>
+										class="icon-[logos--firebase] mr-1 align-middle leading-none"
+									></i>
 									Firebase + Cloud Firestore
 								</li>
 							</ul>
@@ -92,7 +97,8 @@ import MacDesktop from "../layouts/MacDesktop.astro";
 							ScribbleBounce
 							<ul>
 								<li>
-									A <i class="i-logos:unity mr-1 align-middle leading-none"
+									A <i
+										class="icon-[logos--unity] mr-1 align-middle leading-none"
 									></i>Unity game
 								</li>
 								<li>

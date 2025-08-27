@@ -1,0 +1,25 @@
+@import url(https://fonts.bunny.net/css?family=inconsolata:400|lobster:400|montserrat:400);
+@import "tailwindcss";
+
+@plugin "@iconify/tailwind4";
+@plugin "@tailwindcss/typography";
+
+@theme {
+	--font-lobster: "Lobster", display;
+	--font-montserrat: "Montserrat", sans-serif;
+	--font-inconsolata: "Inconsolata", monospace;
+	--font-chicago: "ChicagoFLF", sans-serif;
+	--font-mac: Geneva, Tahoma, Verdana, sans-serif;
+}
+
+@font-face {
+	font-family: "ChicagoFLF";
+	font-style: normal;
+	font-weight: 500;
+	src:
+		local("ChicagoFLF"),
+		url("https://fonts.cdnfonts.com/s/27099/ChicagoFLF.woff") format("woff");
+}
+
+@layer base {
+}

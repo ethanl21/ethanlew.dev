@@ -5,6 +5,7 @@ import systemFloppy from "./_assets/System Floppy.svg";
 import trash from "./_assets/Trash.svg";
 import Window from "../components/macos/Window.astro";
 import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
 
 const { title } = Astro.props;
 
@@ -53,21 +54,21 @@ const links = [
 		<ClientRouter />
 	</head>
 	<body class="font-mac">
-		<div class="relative h-screen max-h-screen flex flex-col">
+		<div class="relative flex h-screen max-h-screen flex-col">
 			<header
-				class="fixed left-0 top-0 z-1 h-fit w-full border-b border-black border-solid"
+				class="fixed top-0 left-0 z-1 h-fit w-full border-b border-solid border-black"
 			>
 				<MenuBar links={links} />
 			</header>
 			<main
-				class="relative h-fit max-h-full w-full flex flex-1 flex-col items-center justify-center bg-neutral-200 p-8"
+				class="relative flex h-fit max-h-full w-full flex-1 flex-col items-center justify-center bg-neutral-200 p-8"
 			>
 				<!-- desktop icons -->
-				<div class="absolute right-0 top-7">
+				<div class="absolute top-7 right-0">
 					<Image src={systemFloppy} alt="System Software" loading="eager" />
 				</div>
 
-				<div class="absolute bottom-3 right-3">
+				<div class="absolute right-3 bottom-3">
 					<Image src={trash} alt="Trash" loading="eager" />
 				</div>
 
@@ -100,6 +101,6 @@ const links = [
 
 <style>
 	:root {
-		--uno-apply: overscroll-none;
+		@apply overscroll-none;
 	}
 </style>
