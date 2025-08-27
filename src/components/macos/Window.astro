@@ -19,11 +19,11 @@ const {
 
 <div
 	style="box-shadow: 1px 1px;"
-	class="max-h-full flex flex-col border border-black border-solid bg-white"
+	class="flex max-h-full flex-col border border-solid border-black bg-white"
 >
 	<Titlebar active={active} expandable={expandable} title={title} />
 	{infobar.length > 0 && <Infobar messages={infobar} />}
-	<div class="scrollbar max-h-full border-black border-solid">
+	<div class="scrollbar max-h-full border-solid border-black">
 		<div class="h-fit">
 			<slot />
 		</div>
@@ -31,79 +31,74 @@ const {
 </div>
 
 <style>
+	@reference "../../styles/global.css";
+
 	.scrollbar {
-		--uno-apply: overscroll-none overflow-auto;
+		@apply overflow-auto overscroll-none;
 	}
 
 	.scrollbar::-webkit-scrollbar {
-		--uno-apply: bg-white border-none;
+		@apply border-none bg-white;
 	}
 
 	.scrollbar::-webkit-scrollbar:vertical {
-		--uno-apply: w-8;
+		@apply w-8;
 	}
 
 	.scrollbar::-webkit-scrollbar:horizontal {
-		--uno-apply: h-8;
+		@apply h-8;
 	}
 
 	.scrollbar::-webkit-scrollbar-corner {
-		--uno-apply: bg-white h-8 border-0 border-t border-l border-black
-			border-solid bg-center bg-no-repeat;
+		@apply h-8 border-0 border-t border-l border-solid border-black bg-white bg-center bg-no-repeat;
 		background-image: url("assets/scroll_resize.svg");
 	}
 
 	.scrollbar::-webkit-scrollbar-track {
-		--uno-apply: bg-white;
+		@apply bg-white;
 		background-image: url("assets/scroll_bg.svg");
 	}
 
 	.scrollbar::-webkit-scrollbar-track:vertical {
-		--uno-apply: border-l border-0 border-black border-solid;
+		@apply border-0 border-l border-solid border-black;
 	}
 
 	.scrollbar::-webkit-scrollbar-track:horizontal {
-		--uno-apply: border-t border-0 border-black border-solid;
+		@apply border-0 border-t border-solid border-black;
 	}
 
 	.scrollbar::-webkit-scrollbar-thumb:vertical {
-		--uno-apply: bg-white border-solid border-black border-y border-l border-r-0
-			h-auto;
+		@apply h-auto border-y border-r-0 border-l border-solid border-black bg-white;
 	}
 
 	.scrollbar::-webkit-scrollbar-thumb:horizontal {
-		--uno-apply: bg-white border-solid border-black border-x border-t border-b-0
-			h-auto;
+		@apply h-auto border-x border-t border-b-0 border-solid border-black bg-white;
 	}
 
 	.scrollbar::-webkit-scrollbar-button:horizontal:start:decrement,
 	.scrollbar::-webkit-scrollbar-button:horizontal:end:increment,
 	.scrollbar::-webkit-scrollbar-button:vertical:start:decrement,
 	.scrollbar::-webkit-scrollbar-button:vertical:end:increment {
-		--uno-apply: block size-8;
+		@apply block size-8;
 	}
 
 	.scrollbar::-webkit-scrollbar-button:horizontal:start:decrement {
-		--uno-apply: border-t border-r border-l-0 border-b-0 border-black
-			border-solid bg-center bg-no-repeat;
+		@apply border-t border-r border-b-0 border-l-0 border-solid border-black bg-center bg-no-repeat;
 		background-image: url("assets/scroll_arrow_l.svg");
 	}
 
 	.scrollbar::-webkit-scrollbar-button:horizontal:end:increment {
-		--uno-apply: border-t border-r-0 border-l border-b-0 border-black
-			border-solid bg-center bg-no-repeat;
+		@apply border-t border-r-0 border-b-0 border-l border-solid border-black bg-center bg-no-repeat;
 		background-image: url("assets/scroll_arrow_r.svg");
 	}
 
 	.scrollbar::-webkit-scrollbar-button:vertical:start:decrement {
-		--uno-apply: border-0 border-l border-b border-black border-solid bg-center
-			bg-no-repeat;
+		@apply border-0 border-b border-l border-solid border-black bg-center bg-no-repeat;
 		background-image: url("assets/scroll_arrow_u.svg");
 	}
 
 	.scrollbar::-webkit-scrollbar-button:vertical:end:increment {
-		--uno-apply: border-0 border-l border-t border-black border-solid bg-center
-			bg-no-repeat;
+		@apply border-0 border-t border-l border-solid border-black bg-center bg-no-repeat;
 		background-image: url("assets/scroll_arrow_d.svg");
 	}
 </style>

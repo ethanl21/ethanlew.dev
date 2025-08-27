@@ -5,12 +5,12 @@ import Layout from "../layouts/MacDesktop.astro";
 <Layout title="About">
 	<div class="flex flex-col gap-4 p-8">
 		<div class="flex flex-col gap-2">
-			<h1 class="text-3xl font-bold font-chicago">About this site</h1>
+			<h1 class="font-chicago text-3xl font-bold">About this site</h1>
 			<a
-				class="w-fit flex flex-row items-center gap-1 border-2 border-black rounded-md bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
+				class="flex w-fit flex-row items-center gap-1 rounded-md border-2 border-black bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
 				href="/"
 			>
-				<i class="i-fa6-solid:arrow-left"></i>
+				<i class="icon-[fa6-solid--arrow-left]"></i>
 				Back to Index Page
 			</a>
 		</div>
@@ -24,7 +24,7 @@ import Layout from "../layouts/MacDesktop.astro";
 					target="_blank"
 					rel="noopener noreferrer">MacOS Classic</a
 				>
-				by Brett Anderson via Figma.
+				by Brett Anderson @ Figma.
 			</p>
 
 			<p>Additionally, the following open-source components are used:</p>
@@ -40,22 +40,21 @@ import Layout from "../layouts/MacDesktop.astro";
 				</li>
 				<li>
 					<a
-						href="https://unocss.dev"
+						href="https://tailwindcss.com"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="underline">UnoCSS</a
+						class="underline">TailwindCSS</a
 					>
 				</li>
 			</ul>
 
 			<p>
 				<em>ethanlew.dev</em> is built using <i
-					class="i-logos:astro-icon mr-1 align-middle leading-none"></i>{
+					class="icon-[logos--astro-icon] mr-1 align-middle leading-none"></i>{
 					Astro.generator
 				} and is hosted by <i
-					class="i-logos:cloudflare-workers-icon mr-1 align-middle leading-none"
-				></i>Cloudflare Pages. It currently contains this "about-me" page and an
-				under-construction blog page.
+					class="icon-[logos--cloudflare-workers-icon] mr-1 align-middle leading-none"
+				></i>Cloudflare Pages.
 			</p>
 		</article>
 	</div>

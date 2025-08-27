@@ -8,17 +8,15 @@ const { links = [] } = Astro.props as Props;
 
 <nav class="bg-white">
 	<ul class="flex flex-row items-center gap-0">
-		<li
-			class="h-6 h-full px-3.5 py-0.5 text-sm active:bg-black active:text-white"
-		>
+		<li class="h-6 px-3.5 py-0.5 text-sm active:bg-black active:text-white">
 			<!-- apple logo -->
 			<button class="align-text-bottom leading-none">
-				<i class="i-fa6-brands:apple"></i>
+				<i class="icon-[fa6-brands--apple]"></i>
 			</button>
 		</li>
 		{
 			links.map((link) => (
-				<li class="h-6 px-2 py-1 text-sm text-black leading-none font-chicago active:bg-black active:text-white">
+				<li class="font-chicago h-6 px-2 py-1 text-sm leading-none text-black active:bg-black active:text-white">
 					<a class="align-middle" href={link.url}>
 						{link.name}
 					</a>

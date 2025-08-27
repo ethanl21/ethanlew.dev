@@ -1,8 +1,0 @@
-{
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "always"
-  },
-  "eslint.rules.customizations": [
-    { "rule": "@unocss/order", "severity": "error" } // Optional: Highlight this rule
-  ]
-}

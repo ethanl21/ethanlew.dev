@@ -11,7 +11,7 @@ const { active = true, expandable = true, title = "" } = Astro.props;
 <div class="relative h-7 w-full border-b border-black">
 	<!-- bg lines -->
 	<div
-		class="absolute left-0 top-0 h-full w-full flex-col justify-center gap-0.5 bg-white"
+		class="absolute top-0 left-0 h-full w-full flex-col justify-center gap-0.5 bg-white"
 		class:list={[{ hidden: !active }, { flex: active }]}
 	>
 		<div class="w-full border-b border-black"></div>
@@ -23,7 +23,7 @@ const { active = true, expandable = true, title = "" } = Astro.props;
 	</div>
 
 	<div
-		class="relative h-full w-full flex flex-row items-center justify-between px-4"
+		class="relative flex h-full w-full flex-row items-center justify-between px-4"
 	>
 		<!-- close btn -->
 		<button
@@ -33,7 +33,7 @@ const { active = true, expandable = true, title = "" } = Astro.props;
 		<!-- window title -->
 		<div class="inline-flex items-center justify-start gap-2.5 bg-white px-2">
 			<div
-				class="text-center text-xl text-black font-medium leading-none font-['ChicagoFLF']"
+				class="text-center font-['ChicagoFLF'] text-xl leading-none font-medium text-black"
 			>
 				{title}
 			</div>
@@ -48,7 +48,7 @@ const { active = true, expandable = true, title = "" } = Astro.props;
 			]}
 		>
 			<div
-				class="absolute left-0 top-0 h-2.5 w-2.5 border-b border-r border-black"
+				class="absolute top-0 left-0 h-2.5 w-2.5 border-r border-b border-black"
 			>
 			</div>
 		</button>
