@@ -72,13 +72,29 @@ const links = [
 				</div>
 
 				<!-- window -->
-				<div class="h-full max-h-full max-w-3xl pt-6">
+				<div class="h-full max-h-full max-w-3xl pt-6" data-draggable>
 					<Window title={title}>
 						<slot />
 					</Window>
 				</div>
 			</main>
 		</div>
+
+		<script>
+			import { Draggable } from "@neodrag/vanilla";
+
+			let dragInstance;
+
+			document.addEventListener("astro:page-load", () => {
+				const window = document.querySelector("[data-draggable]");
+
+				if (window) {
+					dragInstance = new Draggable(window as HTMLElement, {
+						axis: "both",
+					});
+				}
+			});
+		</script>
 	</body>
 </html>
 
