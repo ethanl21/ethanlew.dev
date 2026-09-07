@@ -1,10 +1,11 @@
 ---
 import MacDesktop from "../layouts/MacDesktop.astro";
+import MacButton from "../components/macos/MacButton.astro";
 ---
 
 <MacDesktop title="ethanlew.dev">
-	<div class="flex flex-col p-4">
-		<div class="mb-8 flex h-full flex-grow flex-col gap-3 px-4">
+	<div class="flex flex-col p-4 sm:p-4">
+		<div class="mb-8 flex h-full flex-grow flex-col gap-3 px-0 sm:px-4">
 			<h1 class="text-5xl">
 				<span class="font-lobster">Hello</span>, <span class="font-chicago"
 					>I'm Ethan Lew!</span
@@ -54,32 +55,21 @@ import MacDesktop from "../layouts/MacDesktop.astro";
 		</div>
 
 		<div
-			class="flex flex-row justify-center gap-4 rounded-md bg-neutral-400 px-2 py-4"
+			class="flex flex-row flex-wrap justify-center gap-4 rounded-md bg-neutral-400 px-2 py-4"
 		>
-			<a
-				class="flex flex-row items-center gap-1 rounded-md border-2 border-black bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
-				href="/resume"
-			>
-				<i class="icon-[fa7-solid--address-card]"></i>Resumé
-			</a>
-			<a
-				class="flex flex-row items-center gap-1 rounded-md border-2 border-black bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
-				href="/contact"
-			>
-				<i class="icon-[fa7-solid--envelope]"></i>Contact
-			</a>
-			<a
-				class="flex flex-row items-center gap-1 rounded-md border-2 border-black bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
-				href="/projects"
-			>
-				<i class="icon-[fa7-solid--brain]"></i>Projects
-			</a>
-			<a
-				class="flex flex-row items-center gap-1 rounded-md border-2 border-black bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
-				href="/about-site"
-			>
-				<i class="icon-[fa7-solid--circle-question]"></i>About this site
-			</a>
+			<MacButton href="/resume">
+				<i class="icon-[fa7-solid--address-card]" aria-hidden="true"></i>Resumé
+			</MacButton>
+			<MacButton href="/contact">
+				<i class="icon-[fa7-solid--envelope]" aria-hidden="true"></i>Contact
+			</MacButton>
+			<MacButton href="/projects">
+				<i class="icon-[fa7-solid--brain]" aria-hidden="true"></i>Projects
+			</MacButton>
+			<MacButton href="/about-site">
+				<i class="icon-[fa7-solid--circle-question]" aria-hidden="true"
+				></i>About this site
+			</MacButton>
 		</div>
 	</div>
 </MacDesktop>

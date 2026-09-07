@@ -20,6 +20,9 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 
+		<link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
+		<link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
+
 		<script
 			is:inline
 			data-goatcounter="https://ethanlewdotdev.goatcounter.com/count"
@@ -31,26 +34,32 @@ const { title } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body class="font-mac">
-		<div class="relative flex h-screen max-h-screen flex-col">
+		<div class="relative flex min-h-screen flex-col">
 			<header
-				class="fixed top-0 left-0 z-1 h-fit w-full border-b border-solid border-black"
+				class="sticky top-0 left-0 z-10 h-fit w-full border-b border-solid border-black"
 			>
 				<MenuBar />
 			</header>
 			<main
-				class="relative flex h-fit max-h-full w-full flex-1 flex-col items-center justify-center bg-neutral-200 p-8"
+				class="relative flex w-full flex-1 flex-col items-center justify-center overflow-x-hidden bg-neutral-200 p-4 sm:p-8"
 			>
 				<!-- desktop icons -->
-				<div class="absolute top-7 right-0">
-					<Image src={systemFloppy} alt="System Software" loading="eager" />
+				<div class="absolute top-7 right-0 hidden sm:block" aria-hidden="true">
+					<Image src={systemFloppy} alt="" loading="eager" />
 				</div>
 
-				<div class="absolute right-3 bottom-3">
-					<Image src={trash} alt="Trash" loading="eager" />
+				<div
+					class="absolute right-3 bottom-3 hidden sm:block"
+					aria-hidden="true"
+				>
+					<Image src={trash} alt="" loading="eager" />
 				</div>
 
 				<!-- window -->
-				<div class="h-full max-h-full max-w-4xl pt-6" data-draggable>
+				<div
+					class="max-h-full w-full max-w-4xl min-w-0 pt-6 lg:w-auto"
+					data-draggable
+				>
 					<Window title={title}>
 						<slot />
 					</Window>
@@ -61,16 +70,30 @@ const { title } = Astro.props;
 		<script>
 			import { Draggable } from "@neodrag/vanilla";
 
-			document.addEventListener("astro:page-load", () => {
-				const window = document.querySelector("[data-draggable]");
+			let draggable: Draggable | null = null;
 
-				if (window) {
-					let _ = new Draggable(window as HTMLElement, {
-						axis: "both",
-						handle: ".titlebar",
-					});
+			function setupDraggable() {
+				teardownDraggable();
+				const el = document.querySelector<HTMLElement>("[data-draggable]");
+				// Dragging only makes sense with a fine pointer + room to move.
+				if (
+					el &&
+					window.matchMedia("(pointer: fine)").matches &&
+					window.matchMedia("(min-width: 1024px)").matches
+				) {
+					draggable = new Draggable(el, { axis: "both", handle: ".titlebar" });
+				} else if (el) {
+					el.style.transform = "";
 				}
-			});
+			}
+
+			function teardownDraggable() {
+				draggable?.destroy();
+				draggable = null;
+			}
+
+			document.addEventListener("astro:page-load", setupDraggable);
+			document.addEventListener("astro:before-swap", teardownDraggable);
 		</script>
 	</body>
 </html>

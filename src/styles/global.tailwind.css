@@ -16,10 +16,8 @@
 	font-family: "ChicagoFLF";
 	font-style: normal;
 	font-weight: 500;
+	font-display: swap;
 	src:
 		local("ChicagoFLF"),
 		url("https://fonts.cdnfonts.com/s/27099/ChicagoFLF.woff") format("woff");
-}
-
-@layer base {
 }

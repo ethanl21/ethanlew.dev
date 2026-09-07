@@ -1,0 +1,25 @@
+---
+interface Props {
+	href?: string;
+	id?: string;
+	class?: string;
+	target?: "_blank";
+	rel?: string;
+}
+
+const { href, id, class: klass = "", target, rel } = Astro.props;
+// One class string for every Mac-style button/link in the site.
+const cls = `flex w-fit flex-row items-center gap-1 rounded-md border-2 border-black bg-white px-1.5 py-1 text-xl sm:text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50 ${klass}`;
+---
+
+{
+	href ? (
+		<a href={href} class={cls} target={target} rel={rel}>
+			<slot />
+		</a>
+	) : (
+		<button id={id} class={cls} type="button">
+			<slot />
+		</button>
+	)
+}

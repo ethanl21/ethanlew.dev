@@ -1,27 +1,22 @@
 ---
-const links = [
-	{ name: "File", url: "#" },
-	{ name: "Edit", url: "#" },
-	{ name: "View", url: "#" },
-	{ name: "Window", url: "#" },
-	{ name: "Help", url: "#" },
-];
+import { MENU_LINKS } from "../../site";
 ---
 
-<nav class="bg-white">
-	<ul class="flex flex-row items-center gap-0">
-		<li class="h-6 px-3.5 py-0.5 text-sm active:bg-black active:text-white">
-			<!-- apple logo -->
-			<button class="align-text-bottom leading-none">
-				<i class="icon-[fa7-brands--apple]"></i>
-			</button>
+<nav class="max-w-full overflow-x-auto bg-white" aria-label="Menu">
+	<ul class="flex flex-row items-center gap-0 whitespace-nowrap">
+		<li
+			class="h-6 shrink-0 px-3.5 py-0.5 text-sm hover:bg-black hover:text-white"
+			aria-hidden="true"
+		>
+			<!-- apple logo (decorative) -->
+			<span class="align-text-bottom leading-none">
+				<i class="icon-[fa7-brands--apple]" aria-hidden="true"></i>
+			</span>
 		</li>
 		{
-			links.map((link) => (
-				<li class="font-chicago h-6 px-2 py-1 text-sm leading-none text-black active:bg-black active:text-white">
-					<a class="align-middle" href={link.url}>
-						{link.name}
-					</a>
+			MENU_LINKS.map((link) => (
+				<li class="font-chicago h-6 shrink-0 px-2 py-1 text-sm leading-none text-black hover:bg-black hover:text-white">
+					<span class="align-middle">{link.name}</span>
 				</li>
 			))
 		}

@@ -1,28 +1,20 @@
 ---
 import Layout from "../layouts/MacDesktop.astro";
+import PageHeader from "../components/macos/PageHeader.astro";
 ---
 
 <Layout title="Contact Info">
-	<div class="flex flex-col gap-4 p-8">
-		<div class="flex flex-col gap-2">
-			<h1 class="font-chicago text-3xl font-bold">Contact Information</h1>
-			<a
-				class="flex w-fit flex-row items-center gap-1 rounded-md border-2 border-black bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
-				href="/"
-			>
-				<i class="icon-[fa7-solid--arrow-left]"></i>
-				Back to Index Page
-			</a>
-		</div>
-		<article class="prose">
+	<div class="flex flex-col gap-4 p-4 sm:p-8">
+		<PageHeader title="Contact Information" />
+		<article class="prose max-w-full">
 			<p class="text-center text-2xl">
 				For all inquiries, please send an email to:<br />
 
 				<strong>hi</strong> (at) <strong>ethanlew</strong> (dot)
 				<strong>dev</strong>
 				<br />
-				<i class="icon-[fa7-solid--envelope-open-text]"></i>
-				<i class="icon-[fa7-solid--heart]"></i>
+				<i class="icon-[fa7-solid--envelope-open-text]" aria-hidden="true"></i>
+				<i class="icon-[fa7-solid--heart]" aria-hidden="true"></i>
 			</p>
 		</article>
 	</div>

@@ -1,21 +1,14 @@
 ---
 import MacDesktop from "../layouts/MacDesktop.astro";
+import PageHeader from "../components/macos/PageHeader.astro";
+import { GITHUB_URL } from "../site";
 ---
 
 <MacDesktop title="Projects">
-	<div class="flex h-full max-h-full flex-col gap-2 p-8">
-		<div class="flex flex-col gap-2">
-			<h1 class="font-chicago text-3xl font-bold">Projects</h1>
-			<a
-				class="flex w-fit flex-row items-center gap-1 rounded-md border-2 border-black bg-white px-1.5 py-1 text-2xl active:border-white active:bg-black active:text-white disabled:opacity-50"
-				href="/"
-			>
-				<i class="icon-[fa7-solid--arrow-left]"></i>
-				Back to Index Page
-			</a>
-		</div>
+	<div class="flex h-full max-h-full flex-col gap-2 p-4 sm:p-8">
+		<PageHeader title="Projects" />
 
-		<article class="prose">
+		<article class="prose max-w-full">
 			<ul>
 				<li>
 					ethanlew.dev
@@ -23,13 +16,14 @@ import MacDesktop from "../layouts/MacDesktop.astro";
 						<li>
 							Built using <i
 								class="icon-[logos--astro-icon] mr-1 align-middle leading-none"
-							></i>{Astro.generator}
+								aria-hidden="true"></i>{Astro.generator}
 						</li>
 						<li>
 							Styled with <i
 								class="icon-[logos--tailwindcss-icon] mr-1 align-middle leading-none"
-							></i>TailwindCSS and a UI kit from <i class="icon-[logos--figma]"
-							></i> Figma
+								aria-hidden="true"></i>TailwindCSS and a UI kit from <i
+								class="icon-[logos--figma]"
+								aria-hidden="true"></i> Figma
 						</li>
 					</ul>
 				</li>
@@ -40,90 +34,96 @@ import MacDesktop from "../layouts/MacDesktop.astro";
 						<li>
 							Bundled with <i
 								class="icon-[logos--esbuild] mr-1 align-middle leading-none"
-							></i>esbuild, built using <i
+								aria-hidden="true"></i>esbuild, built using <i
 								class="icon-[vscode-icons--file-type-meson] mr-1 align-middle leading-none"
-							></i>Meson
+								aria-hidden="true"></i>Meson
 						</li>
 					</ul>
-					<li>
-						CalSafe
-						<ul>
-							<li>
-								<i
-									class="icon-[logos--nextjs-icon] mr-1 align-middle leading-none"
-								>
-								</i>Next.js web app that plots Southern California vehicle
-								collision data on a map, including accidents and AI-powered
-								accident predictions
-							</li>
-							<li>
-								Styled with <i
-									class="icon-[logos--tailwindcss-icon] mr-1 align-middle leading-none"
-								></i>TailwindCSS and shadcn/ui
-							</li>
-							<li>
-								Hosted by <i class="icon-[logos--vercel-icon]"></i> Vercel and <i
-									class="icon-[logos--heroku-icon]"></i> Heroku
-							</li>
-						</ul>
-
+				</li>
+				<li>
+					CalSafe
+					<ul>
 						<li>
-							CovidMap
-							<ul>
-								<li>
-									Plots graphs and diagrams of COVID-19 metrics sourced from
-									multiple REST APIs
-								</li>
-								<li>
-									<i class="icon-[logos--react] mr-1 align-middle leading-none"
-									></i>React app built with <i
-										class="icon-[logos--vitejs] mr-1 align-middle leading-none"
-									></i>Vite
-								</li>
-							</ul>
+							<i
+								class="icon-[logos--nextjs-icon] mr-1 align-middle leading-none"
+								aria-hidden="true"
+							>
+							</i>Next.js web app that plots Southern California vehicle
+							collision data on a map, including accidents and AI-powered
+							accident predictions
 						</li>
 						<li>
-							RetroRatings
-							<ul class="list-disc-inside ml-8">
-								<li>
-									<i class="icon-[logos--react] mr-1 align-middle leading-none"
-									></i>React app used to rate items similar to Yelp
-								</li>
-								<li>
-									Uses <i
-										class="icon-[logos--firebase] mr-1 align-middle leading-none"
-									></i>
-									Firebase + Cloud Firestore
-								</li>
-							</ul>
+							Styled with <i
+								class="icon-[logos--tailwindcss-icon] mr-1 align-middle leading-none"
+								aria-hidden="true"></i>TailwindCSS and shadcn/ui
 						</li>
 						<li>
-							ScribbleBounce
-							<ul>
-								<li>
-									<i class="icon-[logos--unity] mr-1 align-middle leading-none"
-									></i>Unity game
-								</li>
-								<li>
-									Puzzle game where the player must draw lines to bounce a ball
-									into a goal
-								</li>
-							</ul>
+							Hosted by <i class="icon-[logos--vercel-icon]" aria-hidden="true"
+							></i> Vercel and <i
+								class="icon-[logos--heroku-icon]"
+								aria-hidden="true"></i> Heroku
 						</li>
-					</li>
-
-					<p>
-						For more information, please visit my{" "}
-						<a
-							class="underline"
-							href="http://github.com/ethanl21"
-							target="_blank"
-							rel="noopener noreferrer">GitHub</a
-						>
-						page.
-					</p>
+					</ul>
+				</li>
+				<li>
+					CovidMap
+					<ul>
+						<li>
+							Plots graphs and diagrams of COVID-19 metrics sourced from
+							multiple REST APIs
+						</li>
+						<li>
+							<i
+								class="icon-[logos--react] mr-1 align-middle leading-none"
+								aria-hidden="true"></i>React app built with <i
+								class="icon-[logos--vitejs] mr-1 align-middle leading-none"
+								aria-hidden="true"></i>Vite
+						</li>
+					</ul>
+				</li>
+				<li>
+					RetroRatings
+					<ul class="list-disc-inside ml-8">
+						<li>
+							<i
+								class="icon-[logos--react] mr-1 align-middle leading-none"
+								aria-hidden="true"></i>React app used to rate items similar to
+							Yelp
+						</li>
+						<li>
+							Uses <i
+								class="icon-[logos--firebase] mr-1 align-middle leading-none"
+								aria-hidden="true"></i>
+							Firebase + Cloud Firestore
+						</li>
+					</ul>
+				</li>
+				<li>
+					ScribbleBounce
+					<ul>
+						<li>
+							<i
+								class="icon-[logos--unity] mr-1 align-middle leading-none"
+								aria-hidden="true"></i>Unity game
+						</li>
+						<li>
+							Puzzle game where the player must draw lines to bounce a ball into
+							a goal
+						</li>
+					</ul>
 				</li>
 			</ul>
+
+			<p>
+				For more information, please visit my{" "}
+				<a
+					class="underline"
+					href={GITHUB_URL}
+					target="_blank"
+					rel="noopener noreferrer">GitHub</a
+				>
+				page.
+			</p>
 		</article>
 	</div>
 </MacDesktop>
