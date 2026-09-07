@@ -1,7 +1,7 @@
 {
   "name": "ethanlew-dev",
-  "type": "module",
   "version": "1.0.0",
+  "type": "module",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -9,45 +9,45 @@
     "preview": "astro preview",
     "astro": "astro",
     "prepare": "husky",
-    "lint": "eslint . --fix",
-    "format": "prettier --write ."
+    "lint": "oxlint --fix",
+    "format": "oxfmt && prettier --write '**/*.astro'",
+    "format:check": "oxfmt --check"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
+    "@astrojs/check": "^0.9.10",
     "@iconify-json/fa7-brands": "^1.2.2",
     "@iconify-json/fa7-solid": "^1.2.4",
     "@iconify-json/logos": "^1.2.9",
     "@iconify-json/vscode-icons": "^1.2.30",
     "@neodrag/vanilla": "^2.3.1",
-    "@tailwindcss/vite": "^4.1.13",
-    "astro": "^5.18.0",
-    "tailwindcss": "^4.1.13",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.3.1",
+    "tailwindcss": "^4.3.3",
     "typescript": "^5.9.2"
   },
   "devDependencies": {
     "@iconify/tailwind4": "^1.0.6",
-    "@tailwindcss/typography": "^0.5.19",
-    "@typescript-eslint/parser": "^8.45.0",
-    "eslint": "^9.36.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-astro": "^1.3.1",
-    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "@tailwindcss/typography": "^0.5.20",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.3",
+    "lint-staged": "^17.5.0",
+    "oxfmt": "^0.67.0",
+    "oxlint": "^1.82.0",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
-    "prettier-plugin-tailwindcss": "^0.6.14",
     "sharp": "^0.34.4",
-    "wrangler": "^4.40.2"
+    "wrangler": "^4.129.1"
   },
-  "packageManager": "pnpm@10.15.0",
   "lint-staged": {
     "*.{astro,mdx,md,js,ts,mjs,mts}": [
-      "prettier --write",
-      "eslint --fix"
+      "oxfmt --no-error-on-unmatched-pattern",
+      "oxlint --fix"
     ],
     "*.{json,yaml,yml}": [
+      "oxfmt --no-error-on-unmatched-pattern"
+    ],
+    "*.astro": [
       "prettier --write"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.15.0"
 }
