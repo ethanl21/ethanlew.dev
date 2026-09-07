@@ -8,29 +8,6 @@ import { ClientRouter } from "astro:transitions";
 import "../styles/global.tailwind.css";
 
 const { title } = Astro.props;
-
-const links = [
-	{
-		name: "File",
-		url: "#",
-	},
-	{
-		name: "Edit",
-		url: "#",
-	},
-	{
-		name: "View",
-		url: "#",
-	},
-	{
-		name: "Window",
-		url: "#",
-	},
-	{
-		name: "Help",
-		url: "#",
-	},
-];
 ---
 
 <!doctype html>
@@ -58,7 +35,7 @@ const links = [
 			<header
 				class="fixed top-0 left-0 z-1 h-fit w-full border-b border-solid border-black"
 			>
-				<MenuBar links={links} />
+				<MenuBar />
 			</header>
 			<main
 				class="relative flex h-fit max-h-full w-full flex-1 flex-col items-center justify-center bg-neutral-200 p-8"

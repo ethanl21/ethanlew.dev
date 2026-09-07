@@ -1,28 +1,18 @@
 ---
 import Titlebar from "./Titlebar.astro";
-import Infobar from "./Infobar.astro";
 
 interface Props {
-	active?: boolean;
-	expandable?: boolean;
 	title?: string;
-	infobar?: string[];
 }
 
-const {
-	active = true,
-	expandable = true,
-	title = "",
-	infobar = [],
-} = Astro.props;
+const { title = "" } = Astro.props;
 ---
 
 <div
 	style="box-shadow: 1px 1px;"
 	class="flex max-h-full min-w-3xl flex-col border border-solid border-black bg-white"
 >
-	<Titlebar active={active} expandable={expandable} title={title} />
-	{infobar.length > 0 && <Infobar messages={infobar} />}
+	<Titlebar title={title} />
 	<div class="scrollbar max-h-full border-solid border-black">
 		<div class="h-fit">
 			<slot />

@@ -1,9 +1,11 @@
 ---
-interface Props {
-	links?: { name: string; url: string }[];
-}
-
-const { links = [] } = Astro.props as Props;
+const links = [
+	{ name: "File", url: "#" },
+	{ name: "Edit", url: "#" },
+	{ name: "View", url: "#" },
+	{ name: "Window", url: "#" },
+	{ name: "Help", url: "#" },
+];
 ---
 
 <nav class="bg-white">

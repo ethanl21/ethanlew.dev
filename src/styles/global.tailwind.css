@@ -5,7 +5,7 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-	--font-lobster: "Lobster", display;
+	--font-lobster: "Lobster", cursive;
 	--font-montserrat: "Montserrat", sans-serif;
 	--font-inconsolata: "Inconsolata", monospace;
 	--font-chicago: "ChicagoFLF", sans-serif;
