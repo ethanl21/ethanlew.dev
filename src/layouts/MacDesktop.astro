@@ -38,14 +38,14 @@ const { title } = Astro.props;
 		<ClientRouter />
 	</head>
 	<body class="font-mac">
-		<div class="relative flex min-h-screen flex-col">
+		<div class="relative flex h-dvh flex-col overflow-hidden">
 			<header
 				class="sticky top-0 left-0 z-10 h-fit w-full border-b border-solid border-black"
 			>
 				<MenuBar />
 			</header>
 			<main
-				class="relative flex w-full flex-1 flex-col items-center justify-center overflow-x-hidden bg-neutral-200 p-4 sm:p-8"
+				class="desktop-pattern relative flex w-full flex-1 min-h-0 flex-col items-center overflow-hidden bg-neutral-200 p-4 sm:p-8"
 			>
 				<!-- desktop icons -->
 				<div class="absolute top-7 right-0 hidden sm:block" aria-hidden="true">
@@ -59,9 +59,11 @@ const { title } = Astro.props;
 					<Image src={trash} alt="" loading="eager" />
 				</div>
 
-				<!-- window -->
+				<!-- window: sole scroll container lives inside Window (.scrollbar).
+				     flex-1 gives this wrapper a definite height so the
+				     max-h-full chain below resolves the same in every engine. -->
 				<div
-					class="max-h-full w-full max-w-4xl min-w-0 pt-6 lg:w-auto"
+					class="flex max-h-full min-h-0 w-full max-w-4xl min-w-0 flex-1 flex-col justify-center py-6 lg:w-auto"
 					data-draggable
 				>
 					<Window title={title}>
