@@ -1,6 +1,6 @@
 # ethanlew.dev
 
-Personal site for Ethan Lew — a retro-Mac-styled portfolio built with [Astro](https://astro.build). Live at [ethanlew.dev](https://ethanlew.dev).
+Personal site for Ethan Lew. A retro-Mac-styled portfolio built with [Astro](https://astro.build). Live at [ethanlew.dev](https://ethanlew.dev).
 
 ## Stack
 
@@ -9,7 +9,7 @@ Personal site for Ethan Lew — a retro-Mac-styled portfolio built with [Astro](
 - TypeScript (strict, `astro check`)
 - [oxfmt](https://github.com/oxc-project/oxc) + [Prettier](https://prettier.io) (`.astro` files only) for formatting
 - [oxlint](https://oxlint.dev) for linting
-- Deployed via Cloudflare (Workers/Pages reads `./dist` per `wrangler.jsonc`) — no deploy workflow needed
+- Cloudflare serves `./dist` per `wrangler.jsonc`, so no deploy workflow is needed
 
 ## Project structure
 
@@ -43,7 +43,7 @@ Requires [pnpm](https://pnpm.io) (see `packageManager` in `package.json`).
 
 ## Format / lint
 
-- `oxfmt` formats everything **except** `*.astro` (see `.oxfmtrc.json`).
+- `oxfmt` formats everything except `*.astro` (see `.oxfmtrc.json`).
 - `prettier-plugin-astro` formats `*.astro` files.
 - `oxlint` lints (see `oxlint.config.ts`).
 - Husky + lint-staged run the same tools on commit.
