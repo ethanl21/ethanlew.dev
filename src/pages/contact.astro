@@ -1,21 +1,186 @@
 ---
 import Layout from "../layouts/MacDesktop.astro";
 import PageHeader from "../components/macos/PageHeader.astro";
+import MacButton from "../components/macos/MacButton.astro";
+import {
+	CF_TURNSTILE_SITEKEY,
+	CF_TURNSTILE_TEST_SITEKEY,
+	LINKEDIN_URL,
+} from "../site";
 ---
+
+<link rel="preconnect" href="https://challenges.cloudflare.com" slot="head" />
 
 <Layout title="Contact Info">
 	<div class="flex flex-col gap-4 p-4 sm:p-8">
 		<PageHeader title="Contact Information" />
 		<article class="prose max-w-full">
-			<p class="text-center text-2xl">
-				For all inquiries, please send an email to:<br />
+			<p id="email-intro" class="text-center text-2xl">
+				For all inquiries, please complete the captcha below to reveal my email
+				address:
+			</p>
 
-				<strong>hi</strong> (at) <strong>ethanlew</strong> (dot)
-				<strong>dev</strong>
-				<br />
+			<p
+				id="email-placeholder"
+				class="hidden text-center text-3xl font-semibold"
+				aria-live="polite"
+			>
+			</p>
+			<p
+				id="email-error"
+				class="hidden text-center text-base text-red-600"
+				role="alert"
+			>
+			</p>
+			<p id="email-icons" class="hidden text-center text-2xl">
 				<i class="icon-[fa7-solid--envelope-open-text]" aria-hidden="true"></i>
 				<i class="icon-[fa7-solid--heart]" aria-hidden="true"></i>
 			</p>
+
+			<script
+				is:inline
+				src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onTurnstileApiReady"
+				async
+				defer></script>
+			<div class="flex justify-center" id="turnstile-wrapper">
+				<div
+					id="turnstile-widget"
+					data-sitekey={CF_TURNSTILE_SITEKEY}
+					data-test-sitekey={CF_TURNSTILE_TEST_SITEKEY}
+				>
+				</div>
+			</div>
+			{
+				import.meta.env.DEV && (
+					<p class="text-center text-sm text-gray-600">
+						Note: email verification doesn't run in the Astro dev server. Use{" "}
+						<code>npx wrangler dev</code> to test the full flow.
+					</p>
+				)
+			}
+
+			<div class="flex justify-center">
+				<MacButton
+					href={LINKEDIN_URL}
+					target="_blank"
+					rel="noopener noreferrer"
+				>
+					<i class="icon-[fa7-brands--linkedin]" aria-hidden="true"></i>
+					Connect on LinkedIn
+				</MacButton>
+			</div>
 		</article>
 	</div>
 </Layout>
+
+<script is:inline>
+	// Explicit Turnstile lifecycle for Astro view transitions. Astro skips
+	// identical inline scripts on client-side revisits, so rendering is driven
+	// by astro:page-load (fires on every navigation). State lives on
+	// window.contactCaptcha to survive re-execution; the block scope keeps
+	// `const` declarations from colliding across runs.
+	{
+		const captcha = (window.contactCaptcha = window.contactCaptcha || {
+			widgetId: undefined,
+			wired: false,
+		});
+
+		const showError = (message) => {
+			const el = document.getElementById("email-error");
+			if (!el) return;
+			el.textContent = message;
+			el.classList.remove("hidden");
+		};
+
+		// Render once per visit; guards make repeat calls safe.
+		captcha.render = () => {
+			const el = document.getElementById("turnstile-widget");
+			if (!el || !window.turnstile || captcha.widgetId !== undefined) return;
+			// Local hostnames aren't allowlisted on the production key, so use
+			// the public test key there (its tokens only validate against the
+			// test secret in .dev.vars).
+			const local = ["localhost", "127.0.0.1", "::1", "[::1]", "0.0.0.0"];
+			const sitekey = local.includes(location.hostname)
+				? el.dataset.testSitekey
+				: el.dataset.sitekey;
+			if (!sitekey) {
+				showError("Captcha is misconfigured (missing site key).");
+				return;
+			}
+			captcha.widgetId = window.turnstile.render("#turnstile-widget", {
+				sitekey,
+				callback: window.onTurnstileSuccess,
+				"error-callback": window.onTurnstileError,
+			});
+		};
+
+		// Deregister before Astro swaps the DOM; otherwise Turnstile warns
+		// about the removed container on the next visit.
+		captcha.cleanup = () => {
+			if (captcha.widgetId === undefined || !window.turnstile) return;
+			try {
+				window.turnstile.remove(captcha.widgetId);
+			} catch {
+				// Container already gone; nothing left to deregister.
+			}
+			captcha.widgetId = undefined;
+		};
+
+		// Swap the placeholder for a mailto link and retire the widget.
+		const revealEmail = (email) => {
+			const link = document.createElement("a");
+			link.href = `mailto:${email}`;
+			link.textContent = email;
+			link.className = "underline";
+			const placeholder = document.getElementById("email-placeholder");
+			placeholder?.replaceChildren(link);
+			placeholder?.classList.remove("hidden");
+			const intro = document.getElementById("email-intro");
+			if (intro) intro.textContent = "You can reach me at:";
+			document.getElementById("email-icons")?.classList.remove("hidden");
+			captcha.cleanup();
+			document.getElementById("turnstile-wrapper")?.remove();
+		};
+
+		// Fired by api.js (?onload=) once the API finishes loading.
+		window.onTurnstileApiReady = () => captcha.render();
+
+		window.onTurnstileError = (code) => {
+			showError(
+				`Captcha failed to load (${code}). Check your connection and reload.`,
+			);
+			console.warn("Turnstile error:", code);
+		};
+
+		window.onTurnstileSuccess = async (token) => {
+			try {
+				const res = await fetch("/api/reveal-email", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ token }),
+				});
+				// 404 = no Worker serving the endpoint (e.g. `pnpm dev`). Bail
+				// without reset, or the solve/fail cycle loops forever.
+				if (res.status === 404) {
+					showError(
+						"Verification needs the Worker — run npx wrangler dev to test it.",
+					);
+					return;
+				}
+				if (!res.ok) throw new Error("verification failed");
+				revealEmail((await res.json()).email);
+			} catch {
+				showError("Verification failed, please try again.");
+				window.turnstile?.reset();
+			}
+		};
+
+		// The document outlives page swaps, so register once.
+		if (!captcha.wired) {
+			captcha.wired = true;
+			document.addEventListener("astro:page-load", () => captcha.render());
+			document.addEventListener("astro:before-swap", () => captcha.cleanup());
+		}
+		captcha.render();
+	}
+</script>
