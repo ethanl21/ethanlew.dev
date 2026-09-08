@@ -10,8 +10,8 @@
     "astro": "astro",
     "prepare": "husky",
     "lint": "oxlint --fix",
-    "format": "oxfmt && prettier --write '**/*.astro'",
-    "format:check": "oxfmt --check"
+    "format": "oxfmt && prettier --write \"**/*.astro\"",
+    "format:check": "oxfmt --check && prettier --check \"**/*.astro\""
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",

@@ -16,7 +16,10 @@
 
 /* Subtle System 7 desktop dither over the base gray. */
 .desktop-pattern {
-	background-image: repeating-conic-gradient(#00000008 0 25%, transparent 0 50%);
+	background-image: repeating-conic-gradient(
+		#00000008 0 25%,
+		transparent 0 50%
+	);
 	background-size: 2px 2px;
 }
 
