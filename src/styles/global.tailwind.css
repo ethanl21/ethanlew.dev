@@ -10,6 +10,27 @@
 	--font-inconsolata: "Inconsolata", monospace;
 	--font-chicago: "ChicagoFLF", sans-serif;
 	--font-mac: Geneva, Tahoma, Verdana, sans-serif;
+	--color-platinum: #dddddd;
+	--color-highlight: #0000aa;
+}
+
+/* Subtle System 7 desktop dither over the base gray. */
+.desktop-pattern {
+	background-image: repeating-conic-gradient(#00000008 0 25%, transparent 0 50%);
+	background-size: 2px 2px;
+}
+
+/* Classic selection + focused visibility, kept to one accent. */
+::selection {
+	background: #0000aa;
+	color: #fff;
+}
+
+/* Iconify glyphs fill their em box edge-to-edge, so the usual word space
+   crowds them. Restore breathing room for icons inside article copy.
+   (Icons in buttons/menus are spaced by flex gaps instead.) */
+.prose [class*="icon-"] {
+	margin-inline: 0.25em;
 }
 
 @font-face {

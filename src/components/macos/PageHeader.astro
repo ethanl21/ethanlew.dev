@@ -12,6 +12,7 @@ const { title, backHref = "/", backLabel = "Back to Index Page" } = Astro.props;
 
 <div class="flex flex-col gap-2">
 	<h1 class="font-chicago text-3xl font-bold">{title}</h1>
+	<div class="border-b border-black" aria-hidden="true"></div>
 	<MacButton href={backHref}>
 		<i class="icon-[fa7-solid--arrow-left]" aria-hidden="true"></i>
 		{backLabel}
