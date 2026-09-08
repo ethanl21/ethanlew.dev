@@ -1,0 +1,34 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Check formatting (oxfmt)
+        run: pnpm format:check
+
+      - name: Check formatting (*.astro)
+        run: pnpm exec prettier --check '**/*.astro'
+
+      - name: Lint
+        run: pnpm exec oxlint
+
+      - name: Typecheck
+        run: pnpm exec astro check

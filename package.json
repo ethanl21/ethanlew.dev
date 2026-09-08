@@ -38,11 +38,11 @@
     "wrangler": "^4.129.1"
   },
   "lint-staged": {
-    "*.{astro,mdx,md,js,ts,mjs,mts}": [
+    "*.{astro,js,ts,mjs,mts}": [
       "oxfmt --no-error-on-unmatched-pattern",
       "oxlint --fix"
     ],
-    "*.{json,yaml,yml}": [
+    "*.{md,mdx,json,yaml,yml}": [
       "oxfmt --no-error-on-unmatched-pattern"
     ],
     "*.astro": [

@@ -1,54 +1,51 @@
-# Astro Starter Kit: Basics
+# ethanlew.dev
 
-```sh
-npm create astro@latest -- --template basics
-```
+Personal site for Ethan Lew — a retro-Mac-styled portfolio built with [Astro](https://astro.build). Live at [ethanlew.dev](https://ethanlew.dev).
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+## Stack
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+- [Astro 7](https://docs.astro.build) (static output, `./dist/`)
+- [Tailwind CSS v4](https://tailwindcss.com) via `@tailwindcss/vite`
+- TypeScript (strict, `astro check`)
+- [oxfmt](https://github.com/oxc-project/oxc) + [Prettier](https://prettier.io) (`.astro` files only) for formatting
+- [oxlint](https://oxlint.dev) for linting
+- Deployed via Cloudflare (Workers/Pages reads `./dist` per `wrangler.jsonc`) — no deploy workflow needed
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project structure
 
 ```text
 /
-├── public/
-│   └── favicon.svg
+├── public/                  # static assets
 ├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/macos/    # retro-Mac UI (Window, Titlebar, MenuBar, …)
+│   ├── layouts/             # MacDesktop layout
+│   ├── pages/               # index, about-site, projects, contact, resume
+│   ├── styles/              # global Tailwind CSS
+│   └── site.ts              # shared site constants (links, URLs)
+├── astro.config.mjs
+├── wrangler.jsonc           # Cloudflare assets: ./dist
+└── .github/workflows/       # CI checks (format/lint)
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Requires [pnpm](https://pnpm.io) (see `packageManager` in `package.json`).
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command             | Action                                         |
+| :------------------ | :--------------------------------------------- |
+| `pnpm install`      | Install dependencies                           |
+| `pnpm dev`          | Start local dev server at `localhost:4321`     |
+| `pnpm build`        | Typecheck (`astro check`) + build to `./dist/` |
+| `pnpm preview`      | Preview the production build locally           |
+| `pnpm lint`         | Lint and autofix with oxlint                   |
+| `pnpm format`       | Format (oxfmt + Prettier for `*.astro`)        |
+| `pnpm format:check` | Check formatting without writing (same as CI)  |
 
-## 🧞 Commands
+## Format / lint
 
-All commands are run from the root of the project, from a terminal:
+- `oxfmt` formats everything **except** `*.astro` (see `.oxfmtrc.json`).
+- `prettier-plugin-astro` formats `*.astro` files.
+- `oxlint` lints (see `oxlint.config.ts`).
+- Husky + lint-staged run the same tools on commit.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+CI (`.github/workflows/check.yml`) runs on every push and PR: `oxfmt --check`, `prettier --check '**/*.astro'`, `oxlint`, and `astro check`.
